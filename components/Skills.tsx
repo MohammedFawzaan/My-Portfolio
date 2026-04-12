@@ -38,7 +38,7 @@ export default function Skills({ skills }: { skills: string[] }) {
   const filteredSkills = skills.filter((s) => s.trim().toUpperCase() !== "SQL");
 
   return (
-    <section id="skills" className="py-32 bg-background relative overflow-hidden">
+    <section id="skills" className="py-12 bg-background relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">

@@ -12,26 +12,7 @@ interface HeroProps {
   };
 }
 
-const letterVariants: Variants = {
-  hidden: { opacity: 0, y: 50, rotateX: -90 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: { type: "spring", stiffness: 100, damping: 10 }
-  }
-};
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.05, delayChildren: 0.2 }
-  }
-};
-
 export default function Hero({ hero }: HeroProps) {
-  const nameChars = hero.name.split("");
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
@@ -44,21 +25,21 @@ export default function Hero({ hero }: HeroProps) {
           transition={{ duration: 1 }}
           className="flex flex-col gap-8"
         >
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8">
+          <div className="flex flex-row items-center gap-4 sm:gap-8">
             <motion.div
               initial={{ scale: 0, rotate: -180, opacity: 0 }}
               animate={{ scale: 1, rotate: 0, opacity: 1 }}
               transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-              className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden aspect-square shadow-[0_0_40px_rgba(6,182,212,0.4)] border-2 border-accent"
+              className="relative w-24 h-24 sm:w-40 sm:h-40 shrink-0 rounded-full overflow-hidden aspect-square shadow-[0_0_40px_rgba(6,182,212,0.4)] border-2 border-accent"
             >
-              <Image src="/avatar.jpeg" alt={hero.name} fill className="object-cover" priority sizes="(max-width: 768px) 128px, 160px" />
+              <Image src="/avatar.jpeg" alt={hero.name} fill className="object-cover" priority sizes="(max-width: 768px) 96px, 160px" />
             </motion.div>
             <div className="flex flex-col">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
-                className="text-5xl sm:text-7xl font-extrabold tracking-tighter text-primary-text drop-shadow-lg flex flex-wrap"
+                className="text-3xl sm:text-7xl font-extrabold tracking-tighter text-primary-text drop-shadow-lg flex flex-wrap leading-none"
               >
                 {hero.name}
               </motion.h1>
@@ -66,7 +47,7 @@ export default function Hero({ hero }: HeroProps) {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 50, delay: 0.8 }}
-                className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-purple-500 mt-2"
+                className="text-base sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-accent to-purple-500 mt-1 sm:mt-2"
               >
                 {hero.title}
               </motion.h2>

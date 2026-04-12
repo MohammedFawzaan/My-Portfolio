@@ -58,7 +58,7 @@ export default function Contact({ contact }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background relative">
+    <section id="contact" className="py-12 bg-background relative">
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="mb-20">
           <motion.h2 
@@ -80,7 +80,7 @@ export default function Contact({ contact }: ContactProps) {
           </motion.h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -91,24 +91,24 @@ export default function Contact({ contact }: ContactProps) {
               I’m always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Let&apos;s build something amazing together.
             </p>
 
-            <div className="flex flex-col gap-8">
-              <a href={`mailto:${contact.email}`} className="flex items-center gap-4 text-primary-text hover:text-accent transition-colors group w-fit">
-                <div className="p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
-                  <Mail size={24} />
+            <div className="flex flex-col gap-6 sm:gap-8">
+              <a href={`mailto:${contact.email}`} className="flex items-center gap-3 sm:gap-4 text-primary-text hover:text-accent transition-colors group w-fit">
+                <div className="p-3 sm:p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                  <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <span className="text-xl font-bold">{contact.email}</span>
+                <span className="text-base sm:text-xl font-bold break-all">{contact.email}</span>
               </a>
-              <a href={`tel:${contact.phone}`} className="flex items-center gap-4 text-primary-text hover:text-accent transition-colors group w-fit">
-                <div className="p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
-                  <Phone size={24} />
+              <a href={`tel:${contact.phone}`} className="flex items-center gap-3 sm:gap-4 text-primary-text hover:text-accent transition-colors group w-fit">
+                <div className="p-3 sm:p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                  <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <span className="text-xl font-bold">{contact.phone}</span>
+                <span className="text-base sm:text-xl font-bold">{contact.phone}</span>
               </a>
-              <a href={contact.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-4 text-primary-text hover:text-accent transition-colors group w-fit">
-                <div className="p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+              <a href={contact.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-3 sm:gap-4 text-primary-text hover:text-accent transition-colors group w-fit">
+                <div className="p-3 sm:p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
                   <LinkedinIcon size={24} />
                 </div>
-                <span className="text-xl font-bold">LinkedIn Profile</span>
+                <span className="text-base sm:text-xl font-bold">LinkedIn Profile</span>
               </a>
             </div>
           </motion.div>
@@ -129,7 +129,7 @@ export default function Contact({ contact }: ContactProps) {
                   required 
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-background border-2 border-border p-4 rounded-xl text-primary-text placeholder:text-secondary-text/50 focus:outline-none focus:border-accent transition-colors font-bold text-lg"
+                  className="w-full bg-background border-2 border-border p-3 sm:p-4 rounded-xl text-primary-text placeholder:text-secondary-text/50 focus:outline-none focus:border-accent transition-colors font-bold text-base sm:text-lg"
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -141,7 +141,7 @@ export default function Contact({ contact }: ContactProps) {
                   required 
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-background border-2 border-border p-4 rounded-xl text-primary-text placeholder:text-secondary-text/50 focus:outline-none focus:border-accent transition-colors font-bold text-lg"
+                  className="w-full bg-background border-2 border-border p-3 sm:p-4 rounded-xl text-primary-text placeholder:text-secondary-text/50 focus:outline-none focus:border-accent transition-colors font-bold text-base sm:text-lg"
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -153,7 +153,7 @@ export default function Contact({ contact }: ContactProps) {
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-background border-2 border-border p-4 rounded-xl text-primary-text placeholder:text-secondary-text/50 focus:outline-none focus:border-accent transition-colors font-bold text-lg resize-none"
+                  className="w-full bg-background border-2 border-border p-3 sm:p-4 rounded-xl text-primary-text placeholder:text-secondary-text/50 focus:outline-none focus:border-accent transition-colors font-bold text-base sm:text-lg resize-none"
                 />
               </div>
               
@@ -171,7 +171,7 @@ export default function Contact({ contact }: ContactProps) {
               <button 
                 type="submit" 
                 disabled={status === "loading"}
-                className="flex items-center justify-center gap-3 w-full bg-gradient-to-r from-accent to-purple-500 text-white rounded-xl p-4 font-bold text-lg hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] transition-all disabled:opacity-70 disabled:hover:shadow-none"
+                className="flex items-center justify-center gap-2 sm:gap-3 w-full bg-gradient-to-r from-accent to-purple-500 text-white rounded-xl p-3 sm:p-4 font-bold text-base sm:text-lg hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] transition-all disabled:opacity-70 disabled:hover:shadow-none"
               >
                 {status === "loading" ? (
                   <Loader2 className="animate-spin" size={24} />

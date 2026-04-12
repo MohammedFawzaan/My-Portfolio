@@ -32,7 +32,7 @@ export default function NavBar({ navLinks }: NavBarProps) {
         </a>
 
         {/* Desktop */}
-        <nav className="hidden md:flex gap-8">
+        <nav className="hidden lg:flex gap-4 xl:gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -45,7 +45,7 @@ export default function NavBar({ navLinks }: NavBarProps) {
         </nav>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-primary-text" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden text-primary-text" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -54,7 +54,7 @@ export default function NavBar({ navLinks }: NavBarProps) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-t border-border shadow-md"
+            className="lg:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-t border-border shadow-md"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

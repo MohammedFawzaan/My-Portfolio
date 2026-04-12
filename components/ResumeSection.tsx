@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ResumeSection() {
   return (
-    <section id="resume" className="py-24 bg-section-alt relative">
+    <section id="resume" className="py-12 bg-section-alt relative">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center flex flex-col items-center">
         <motion.h3 
           initial={{ opacity: 0, y: 30 }}

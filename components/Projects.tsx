@@ -69,7 +69,7 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
   };
 
   return (
-    <section id="projects" className="py-32 bg-section-alt relative">
+    <section id="projects" className="py-12 bg-section-alt relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2 
@@ -104,20 +104,20 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                 className="glass rounded-3xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] group"
               >
                 <div 
-                  className="px-8 py-8 flex items-center justify-between cursor-pointer relative z-20"
+                  className="px-4 py-5 sm:px-8 sm:py-8 flex items-center justify-between cursor-pointer relative z-20"
                   onClick={() => toggle(index)}
                 >
-                  <div className="flex-1 pr-8 flex items-center gap-6">
+                  <div className="flex-1 pr-4 sm:pr-8 flex items-center gap-4 sm:gap-6">
                     {project.logo && (
-                      <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-accent/20 flex-shrink-0 shadow-md">
-                        <Image src={project.logo} alt={project.title} fill className="object-cover" sizes="64px" />
+                      <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden border border-accent/20 sm:border-2 shrink-0 shadow-md">
+                        <Image src={project.logo} alt={project.title} fill className="object-cover" sizes="(max-width: 768px) 48px, 64px" />
                       </div>
                     )}
                     <div>
-                      <h4 className="text-2xl sm:text-3xl font-extrabold text-primary-text group-hover:text-accent transition-colors drop-shadow-sm">
+                      <h4 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-primary-text group-hover:text-accent transition-colors drop-shadow-sm leading-tight">
                         {project.title}
                       </h4>
-                      <p className="text-secondary-text mt-2 font-medium line-clamp-1 text-lg">
+                      <p className="text-secondary-text mt-1 sm:mt-2 font-medium line-clamp-1 text-sm sm:text-lg">
                         {project.problem}
                       </p>
                     </div>
@@ -125,9 +125,9 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                   <motion.div
                     animate={{ rotate: isExpanded ? 180 : 0, scale: isExpanded ? 1.2 : 1 }}
                     transition={{ type: "spring", stiffness: 100, damping: 10 }}
-                    className="text-accent bg-accent/10 p-3 rounded-full"
+                    className="text-accent bg-accent/10 p-2 sm:p-3 rounded-full shrink-0"
                   >
-                    <ChevronDown size={28} />
+                    <ChevronDown className="w-5 h-5 sm:w-7 sm:h-7" />
                   </motion.div>
                 </div>
 
@@ -141,30 +141,30 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                       className="overflow-hidden relative"
                     >
                       {/* Dynamic 3D Core Background */}
-                      <div className="absolute right-0 top-0 w-2/3 h-full z-0 opacity-40 mix-blend-screen pointer-events-none hidden md:block">
+                      <div className="absolute right-0 top-0 w-2/3 h-full z-0 opacity-40 mix-blend-screen pointer-events-none hidden lg:block">
                         <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
                           <ambientLight intensity={1} />
                           <GlowingCore />
                         </Canvas>
                       </div>
 
-                      <div className="px-8 pb-10 pt-4 lg:pr-[45%] relative z-10 flex flex-col gap-8">
-                        <p className="text-primary-text font-medium leading-relaxed text-lg">
+                      <div className="px-4 pb-6 pt-2 sm:px-8 sm:pb-10 sm:pt-4 lg:pr-[45%] relative z-10 flex flex-col gap-6 sm:gap-8">
+                        <p className="text-primary-text font-medium leading-relaxed text-sm sm:text-lg">
                           {project.description}
                         </p>
                         
                         <div>
-                          <h5 className="text-sm font-bold uppercase tracking-[0.1em] text-accent mb-4">Key Features</h5>
-                          <ul className="text-primary-text font-medium space-y-3">
+                          <h5 className="text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-accent mb-3 sm:mb-4">Key Features</h5>
+                          <ul className="text-primary-text font-medium space-y-2 sm:space-y-3">
                             {project.keyFeatures.map((feature, i) => (
                               <motion.li 
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: i * 0.1 }}
                                 key={i} 
-                                className="flex items-start gap-3"
+                                className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base"
                               >
-                                <span className="text-purple-500 mt-1">▹</span>
+                                <span className="text-purple-500 mt-0.5">▹</span>
                                 {feature}
                               </motion.li>
                             ))}
@@ -172,15 +172,15 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                         </div>
 
                         <div>
-                          <h5 className="text-sm font-bold uppercase tracking-[0.1em] text-accent mb-4">Tech Stack</h5>
-                          <div className="flex flex-wrap gap-3">
+                          <h5 className="text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-accent mb-3 sm:mb-4">Tech Stack</h5>
+                          <div className="flex flex-wrap gap-2 sm:gap-3">
                             {project.techStack.map((tech, i) => (
                               <motion.span 
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: i * 0.05 }}
                                 key={i} 
-                                className="px-4 py-2 bg-gradient-to-r from-background to-surface border border-accent/30 text-primary-text font-semibold text-sm rounded-xl shadow-[0_0_10px_rgba(6,182,212,0.1)]"
+                                className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-background to-surface border border-accent/30 text-primary-text font-semibold text-xs sm:text-sm rounded-lg sm:rounded-xl shadow-[0_0_10px_rgba(6,182,212,0.1)]"
                               >
                                 {tech}
                               </motion.span>
@@ -188,13 +188,13 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                           </div>
                         </div>
 
-                        <div className="flex gap-4 mt-6">
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 sm:mt-6">
                           {project.links.github && (
                             <a 
                               href={project.links.github} 
                               target="_blank" 
                               rel="noreferrer"
-                              className="flex items-center gap-2 px-8 py-3 bg-white text-black rounded-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:scale-105 transition-all font-bold"
+                              className="flex items-center justify-center gap-2 px-4 py-2 sm:px-8 sm:py-3 bg-white text-black rounded-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:scale-105 transition-all font-bold text-sm sm:text-base w-full sm:w-auto"
                             >
                               <GithubIcon size={20} />
                               Source Code
@@ -205,7 +205,7 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                               href={project.links.live} 
                               target="_blank" 
                               rel="noreferrer"
-                              className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-accent to-purple-500 text-white rounded-lg hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:scale-105 transition-all font-bold"
+                              className="flex items-center justify-center gap-2 px-4 py-2 sm:px-8 sm:py-3 bg-gradient-to-r from-accent to-purple-500 text-white rounded-lg hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:scale-105 transition-all font-bold text-sm sm:text-base w-full sm:w-auto"
                             >
                               <ExternalLink size={20} />
                               Live Project

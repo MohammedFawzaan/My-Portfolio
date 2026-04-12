@@ -25,7 +25,7 @@ export default function Education({ education }: { education: EducationItem[] })
   });
 
   return (
-    <section id="education" className="py-32 bg-section-alt relative">
+    <section id="education" className="py-12 bg-section-alt relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2 
@@ -47,7 +47,7 @@ export default function Education({ education }: { education: EducationItem[] })
           </motion.h3>
         </div>
 
-        <div className="relative pl-8 md:pl-12" ref={ref}>
+        <div className="relative pl-7 sm:pl-8 md:pl-10 lg:pl-12" ref={ref}>
           {/* Animated Timeline Line */}
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-border rounded-full" />
           <motion.div 
@@ -62,13 +62,13 @@ export default function Education({ education }: { education: EducationItem[] })
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
-              className="mb-16 relative last:mb-0 group"
+              className="mb-12 sm:mb-16 relative last:mb-0 group"
             >
-              <div className="absolute -left-12 md:-left-16 w-10 h-10 bg-background border-2 border-accent rounded-full flex items-center justify-center text-accent z-10 shadow-[0_0_15px_rgba(6,182,212,0.5)] group-hover:scale-125 transition-transform duration-300">
+              <div className="absolute -left-12 sm:-left-13 md:-left-14 lg:-left-16 w-10 h-10 bg-background border-2 border-accent rounded-full flex items-center justify-center text-accent z-10 shadow-[0_0_15px_rgba(6,182,212,0.5)] group-hover:scale-125 transition-transform duration-300">
                 <GraduationCap size={20} />
               </div>
               
-              <div className="glass p-8 rounded-2xl flex flex-col gap-3 group-hover:border-accent/50 transition-colors duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] relative overflow-hidden">
+              <div className="glass p-6 sm:p-8 rounded-2xl flex flex-col gap-3 group-hover:border-accent/50 transition-colors duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] relative overflow-hidden">
                 {/* Internal Glow */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl" />
                 

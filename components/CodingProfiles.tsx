@@ -50,7 +50,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
   };
 
   return (
-    <section id="coding-profiles" className="py-24 bg-section-alt relative">
+    <section id="coding-profiles" className="py-12 bg-section-alt relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2 
@@ -89,23 +89,23 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                 className="glass overflow-hidden transition-colors hover:border-accent shadow-lg"
               >
                 <div 
-                  className={`px-8 py-6 flex items-center justify-between ${!isGfg ? 'cursor-pointer' : ''}`}
+                  className={`px-4 sm:px-8 py-4 sm:py-6 flex items-center justify-between gap-4 ${!isGfg ? 'cursor-pointer' : ''}`}
                   onClick={() => !isGfg && toggle(index)}
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
                     {iconSrc && (
                        /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={iconSrc} alt={`${profile.name} logo`} className="w-8 h-8 object-contain drop-shadow-md" />
+                      <img src={iconSrc} alt={`${profile.name} logo`} className="w-6 h-6 sm:w-8 sm:h-8 object-contain drop-shadow-md" />
                     )}
-                    <h4 className="text-2xl font-bold text-primary-text drop-shadow-sm">
+                    <h4 className="text-lg sm:text-2xl font-bold text-primary-text drop-shadow-sm">
                       {profile.name}
                     </h4>
-                    <span className="text-secondary-text hidden sm:block font-bold">•</span>
-                    <p className="text-secondary-text font-semibold hidden sm:block">
+                    <span className="text-secondary-text hidden sm:block font-bold mt-1">•</span>
+                    <p className="text-secondary-text font-semibold hidden sm:block mt-1">
                       {profile.description}
                     </p>
                   </div>
-                  <div className="flex items-center gap-4 text-accent">
+                  <div className="flex items-center gap-2 sm:gap-4 text-accent shrink-0">
                     <a 
                       href={profile.link} 
                       target="_blank" 
@@ -114,18 +114,18 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                       onClick={(e) => e.stopPropagation()}
                       title="Visit Profile"
                     >
-                      <ExternalLink size={20} />
+                      <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
                     </a>
                     {!isGfg && (
                       <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} className="p-1">
-                        <ChevronDown size={20} />
+                        <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
                       </motion.div>
                     )}
                   </div>
                 </div>
 
                 {/* Mobile description visibility fallback */}
-                <p className="text-secondary-text font-medium px-8 pb-4 sm:hidden">
+                <p className="text-secondary-text font-medium px-4 sm:hidden pb-4 sm:pb-0 text-sm">
                   {profile.description}
                 </p>
 

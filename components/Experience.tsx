@@ -25,7 +25,7 @@ export default function Experience({ experience }: { experience: ExperienceItem[
   });
 
   return (
-    <section id="experience" className="py-32 bg-background relative">
+    <section id="experience" className="py-12 bg-background relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2
@@ -47,7 +47,7 @@ export default function Experience({ experience }: { experience: ExperienceItem[
           </motion.h3>
         </div>
 
-        <div className="relative pl-8 md:pl-12" ref={ref}>
+        <div className="relative pl-7 sm:pl-8 md:pl-10 lg:pl-12" ref={ref}>
           {/* Animated Timeline Line */}
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-border rounded-full" />
           <motion.div
@@ -62,15 +62,15 @@ export default function Experience({ experience }: { experience: ExperienceItem[
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
-              className="mb-16 relative last:mb-0 group"
+              className="mb-12 sm:mb-16 relative last:mb-0 group"
             >
-              <div className="absolute -left-12 md:-left-16 w-10 h-10 bg-section-alt border-2 border-purple-500 rounded-full flex items-center justify-center text-purple-400 z-10 shadow-[0_0_15px_rgba(168,85,247,0.5)] group-hover:scale-125 transition-transform duration-300">
+              <div className="absolute -left-12 sm:-left-13 md:-left-14 lg:-left-16 w-10 h-10 bg-section-alt border-2 border-purple-500 rounded-full flex items-center justify-center text-purple-400 z-10 shadow-[0_0_15px_rgba(168,85,247,0.5)] group-hover:scale-125 transition-transform duration-300">
                 <Briefcase size={20} />
               </div>
 
-              <div className="glass p-8 rounded-2xl flex flex-col md:flex-row gap-8 md:gap-16 group-hover:border-purple-500/50 transition-colors duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] relative overflow-hidden">
+              <div className="glass p-6 sm:p-8 rounded-2xl flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 group-hover:border-purple-500/50 transition-colors duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] relative overflow-hidden">
                 <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-                <div className="md:w-1/3 relative z-10">
+                <div className="lg:w-1/3 relative z-10">
                   {item.duration && (
                     <span className="text-purple-400 font-bold tracking-wider uppercase text-sm block mb-2">
                       {item.duration}
@@ -95,7 +95,7 @@ export default function Experience({ experience }: { experience: ExperienceItem[
                   </div>
                 </div>
 
-                <div className="md:w-2/3 relative z-10">
+                <div className="lg:w-2/3 relative z-10">
                   <ul className="space-y-4">
                     {item.responsibilities.map((resp, i) => (
                       <motion.li
