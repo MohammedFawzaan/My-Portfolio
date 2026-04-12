@@ -4,14 +4,14 @@ import { motion } from "framer-motion";
 const getIconUrl = (skillName: string) => {
   const map: Record<string, string> = {
     "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
-    "C": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg",
+    "C": "https://cdn.simpleicons.org/c/3B82F6",
     "Python": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
     "JavaScript": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
     "TypeScript": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
     "React.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
     "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original-wordmark.svg",
     "React Native": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-    "Expo": "https://cdn.simpleicons.org/expo/FFFFFF",
+    "Expo": "https://cdn.simpleicons.org/expo/1E293B",
     "Vite": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vite/vite-original.svg",
     "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
     "Express.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg", // Using wordmark via simple icon logic below if it looks better, but express original usually works
@@ -26,10 +26,10 @@ const getIconUrl = (skillName: string) => {
     "HTML": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
     "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
     "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
-    "ShadCN UI": "https://cdn.simpleicons.org/shadcnui/FFFFFF",
+    "ShadCN UI": "https://cdn.simpleicons.org/shadcnui/1E293B",
   };
 
-  if (skillName === "Express.js") return "https://cdn.simpleicons.org/express/FFFFFF";
+  if (skillName === "Express.js") return "https://cdn.simpleicons.org/express/1E293B";
 
   return map[skillName] || `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/devicon/devicon-original.svg`;
 };
@@ -38,7 +38,7 @@ export default function Skills({ skills }: { skills: string[] }) {
   const filteredSkills = skills.filter((s) => s.trim().toUpperCase() !== "SQL");
 
   return (
-    <section id="skills" className="py-12 bg-background relative overflow-hidden">
+    <section id="skills" className="py-12 bg-transparent relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
@@ -103,7 +103,7 @@ export default function Skills({ skills }: { skills: string[] }) {
                     ease: "easeInOut",
                     delay: floatDelay
                   }}
-                  className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center filter drop-shadow-[0_5px_10px_rgba(0,0,0,0.5)] group-hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.8)] transition-all duration-300"
+                  className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center filter drop-shadow-[0_5px_10px_rgba(0,0,0,0.5)] group-hover:drop-shadow-[0_0_20px_rgba(59,130,246,0.8)] transition-all duration-300"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img

@@ -20,7 +20,7 @@ export default function NavBar({ navLinks }: NavBarProps) {
   return (
     <motion.header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-surface/80 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
+        isScrolled ? "bg-background/85 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}

@@ -25,7 +25,7 @@ export default function Experience({ experience }: { experience: ExperienceItem[
   });
 
   return (
-    <section id="experience" className="py-12 bg-background relative">
+    <section id="experience" className="py-12 bg-transparent relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2
@@ -68,7 +68,7 @@ export default function Experience({ experience }: { experience: ExperienceItem[
                 <Briefcase size={20} />
               </div>
 
-              <div className="glass p-6 sm:p-8 rounded-2xl flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 group-hover:border-purple-500/50 transition-colors duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] relative overflow-hidden">
+              <div className="glass p-6 sm:p-8 rounded-2xl flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 group-hover:border-purple-500/50 transition-all duration-300 transform group-hover:-translate-y-2 group-hover:scale-[1.01] hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] relative overflow-hidden">
                 <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
                 <div className="lg:w-1/3 relative z-10">
                   {item.duration && (

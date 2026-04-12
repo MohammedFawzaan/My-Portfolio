@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ResumeSection() {
   return (
-    <section id="resume" className="py-12 bg-section-alt relative">
+    <section id="resume" className="py-12 bg-transparent relative">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center flex flex-col items-center">
         <motion.h3 
           initial={{ opacity: 0, y: 30 }}
@@ -22,7 +22,7 @@ export default function ResumeSection() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative w-full max-w-2xl aspect-[1/1.4] border border-border shadow-[0_0_30px_rgba(6,182,212,0.15)] mb-12 overflow-hidden rounded-xl bg-surface/50 backdrop-blur-sm"
+          className="relative w-full max-w-2xl aspect-[1/1.4] border border-border shadow-[0_0_30px_rgba(59,130,246,0.12)] mb-12 overflow-hidden rounded-xl bg-surface/50 backdrop-blur-sm"
         >
           <Image 
             src="/resume.jpeg" 

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0B0F19;
-  --surface: rgba(255, 255, 255, 0.03);
-  --primary-text: #F8FAFC;
-  --secondary-text: #94A3B8;
-  --accent: #06B6D4;
-  --accent-hover: #22D3EE;
-  --border-color: rgba(255, 255, 255, 0.1);
-  --section-alt: rgba(11, 15, 25, 0.7);
+  --background: #F1F5F9;
+  --surface: rgba(255, 255, 255, 0.65);
+  --primary-text: #0F172A;
+  --secondary-text: #64748B;
+  --accent: #3B82F6;
+  --accent-hover: #60A5FA;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --section-alt: #E8EDF4;
 }
 
 @theme inline {
@@ -36,7 +36,8 @@ body {
 
 .glass {
   background: var(--surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-color);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
 }

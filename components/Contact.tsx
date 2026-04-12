@@ -58,7 +58,7 @@ export default function Contact({ contact }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-12 bg-background relative">
+    <section id="contact" className="py-12 bg-transparent relative">
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="mb-20">
           <motion.h2 
@@ -93,19 +93,19 @@ export default function Contact({ contact }: ContactProps) {
 
             <div className="flex flex-col gap-6 sm:gap-8">
               <a href={`mailto:${contact.email}`} className="flex items-center gap-3 sm:gap-4 text-primary-text hover:text-accent transition-colors group w-fit">
-                <div className="p-3 sm:p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                <div className="p-3 sm:p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
                   <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <span className="text-base sm:text-xl font-bold break-all">{contact.email}</span>
               </a>
               <a href={`tel:${contact.phone}`} className="flex items-center gap-3 sm:gap-4 text-primary-text hover:text-accent transition-colors group w-fit">
-                <div className="p-3 sm:p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                <div className="p-3 sm:p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
                   <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <span className="text-base sm:text-xl font-bold">{contact.phone}</span>
               </a>
               <a href={contact.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-3 sm:gap-4 text-primary-text hover:text-accent transition-colors group w-fit">
-                <div className="p-3 sm:p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                <div className="p-3 sm:p-4 bg-section-alt rounded-2xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all shadow-md group-hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
                   <LinkedinIcon size={24} />
                 </div>
                 <span className="text-base sm:text-xl font-bold">LinkedIn Profile</span>
@@ -171,7 +171,7 @@ export default function Contact({ contact }: ContactProps) {
               <button 
                 type="submit" 
                 disabled={status === "loading"}
-                className="flex items-center justify-center gap-2 sm:gap-3 w-full bg-gradient-to-r from-accent to-purple-500 text-white rounded-xl p-3 sm:p-4 font-bold text-base sm:text-lg hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] transition-all disabled:opacity-70 disabled:hover:shadow-none"
+                className="flex items-center justify-center gap-2 sm:gap-3 w-full bg-gradient-to-r from-accent to-purple-500 text-white rounded-xl p-3 sm:p-4 font-bold text-base sm:text-lg hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all disabled:opacity-70 disabled:hover:shadow-none"
               >
                 {status === "loading" ? (
                   <Loader2 className="animate-spin" size={24} />

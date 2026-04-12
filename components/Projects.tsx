@@ -50,13 +50,13 @@ function GlowingCore() {
     <group>
       <mesh ref={meshRef}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshStandardMaterial color="#06B6D4" wireframe transparent opacity={0.6} emissive="#06B6D4" emissiveIntensity={1} />
+        <meshStandardMaterial color="#3B82F6" wireframe transparent opacity={0.5} emissive="#3B82F6" emissiveIntensity={0.8} />
       </mesh>
       <mesh ref={ringRef}>
         <torusGeometry args={[2, 0.05, 16, 100]} />
-        <meshStandardMaterial color="#A855F7" emissive="#A855F7" emissiveIntensity={2} />
+        <meshStandardMaterial color="#7C3AED" emissive="#7C3AED" emissiveIntensity={1.5} />
       </mesh>
-      <pointLight color="#06B6D4" intensity={10} distance={10} />
+      <pointLight color="#3B82F6" intensity={8} distance={10} />
     </group>
   );
 }
@@ -69,7 +69,7 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
   };
 
   return (
-    <section id="projects" className="py-12 bg-section-alt relative">
+    <section id="projects" className="py-12 bg-transparent relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2 
@@ -101,7 +101,7 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="glass rounded-3xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)] group"
+                className="glass rounded-3xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:border-accent/40 group"
               >
                 <div 
                   className="px-4 py-5 sm:px-8 sm:py-8 flex items-center justify-between cursor-pointer relative z-20"
@@ -141,7 +141,7 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                       className="overflow-hidden relative"
                     >
                       {/* Dynamic 3D Core Background */}
-                      <div className="absolute right-0 top-0 w-2/3 h-full z-0 opacity-40 mix-blend-screen pointer-events-none hidden lg:block">
+                      <div className="absolute right-0 top-0 w-2/3 h-full z-0 opacity-50 pointer-events-none hidden lg:block">
                         <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
                           <ambientLight intensity={1} />
                           <GlowingCore />
@@ -180,7 +180,7 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: i * 0.05 }}
                                 key={i} 
-                                className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-background to-surface border border-accent/30 text-primary-text font-semibold text-xs sm:text-sm rounded-lg sm:rounded-xl shadow-[0_0_10px_rgba(6,182,212,0.1)]"
+                                className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gradient-to-r from-background to-surface border border-accent/30 text-primary-text font-semibold text-xs sm:text-sm rounded-lg sm:rounded-xl shadow-[0_0_10px_rgba(59,130,246,0.1)]"
                               >
                                 {tech}
                               </motion.span>
@@ -194,7 +194,7 @@ export default function Projects({ projects }: { projects: ProjectItem[] }) {
                               href={project.links.github} 
                               target="_blank" 
                               rel="noreferrer"
-                              className="flex items-center justify-center gap-2 px-4 py-2 sm:px-8 sm:py-3 bg-white text-black rounded-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:scale-105 transition-all font-bold text-sm sm:text-base w-full sm:w-auto"
+                              className="flex items-center justify-center gap-2 px-4 py-2 sm:px-8 sm:py-3 bg-primary-text text-background rounded-lg hover:shadow-[0_0_20px_rgba(0,0,0,0.2)] hover:scale-105 transition-all font-bold text-sm sm:text-base w-full sm:w-auto"
                             >
                               <GithubIcon size={20} />
                               Source Code

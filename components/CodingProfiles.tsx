@@ -45,12 +45,12 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
     const lowerName = name.toLowerCase();
     if (lowerName.includes("leetcode")) return "https://cdn.simpleicons.org/leetcode/FFA116";
     if (lowerName.includes("geek") || lowerName.includes("gfg")) return "https://cdn.simpleicons.org/geeksforgeeks/2F8D46";
-    if (lowerName.includes("github")) return "https://cdn.simpleicons.org/github/FFFFFF";
+    if (lowerName.includes("github")) return "https://cdn.simpleicons.org/github/1E293B";
     return null;
   };
 
   return (
-    <section id="coding-profiles" className="py-12 bg-section-alt relative">
+    <section id="coding-profiles" className="py-12 bg-transparent relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2 
@@ -86,7 +86,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="glass overflow-hidden transition-colors hover:border-accent shadow-lg"
+                className="glass overflow-hidden transition-all duration-300 hover:border-accent/80 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] shadow-lg"
               >
                 <div 
                   className={`px-4 sm:px-8 py-4 sm:py-6 flex items-center justify-between gap-4 ${!isGfg ? 'cursor-pointer' : ''}`}
@@ -138,7 +138,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                       className="overflow-hidden bg-section-alt border-t border-border"
                     >
                       <div className="p-6">
-                        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border shadow-[0_0_20px_rgba(6,182,212,0.1)]">
+                        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border shadow-[0_0_20px_rgba(59,130,246,0.1)]">
                           <Image 
                             src={imgSrc} 
                             alt={`${profile.name} Dashboard`} 

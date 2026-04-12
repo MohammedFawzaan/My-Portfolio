@@ -15,9 +15,8 @@ interface HeroProps {
 export default function Hero({ hero }: HeroProps) {
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-background">
-      <ThreeBackground />
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-transparent">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center">
         {/* Left Side */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -27,12 +26,17 @@ export default function Hero({ hero }: HeroProps) {
         >
           <div className="flex flex-row items-center gap-4 sm:gap-8">
             <motion.div
-              initial={{ scale: 0, rotate: -180, opacity: 0 }}
-              animate={{ scale: 1, rotate: 0, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-              className="relative w-24 h-24 sm:w-40 sm:h-40 shrink-0 rounded-full overflow-hidden aspect-square shadow-[0_0_40px_rgba(6,182,212,0.4)] border-2 border-accent"
+              initial={{ scale: 0, rotate: -180, opacity: 0, y: 0 }}
+              animate={{ scale: 1, rotate: 0, opacity: 1, y: [0, -10, 0] }}
+              transition={{
+                scale: { type: "spring", stiffness: 100, damping: 20, delay: 0.1 },
+                rotate: { type: "spring", stiffness: 100, damping: 20, delay: 0.1 },
+                opacity: { duration: 0.5, delay: 0.1 },
+                y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }
+              }}
+              className="relative w-28 h-28 sm:w-44 sm:h-44 shrink-0 rounded-full overflow-hidden aspect-square shadow-[0_0_30px_rgba(59,130,246,0.25)] border-2 border-accent"
             >
-              <Image src="/avatar.jpeg" alt={hero.name} fill className="object-cover" priority sizes="(max-width: 768px) 96px, 160px" />
+              <Image src="/avatar.jpeg" alt={hero.name} fill className="object-cover" priority sizes="(max-width: 768px) 112px, 176px" />
             </motion.div>
             <div className="flex flex-col">
               <motion.h1
@@ -57,7 +61,7 @@ export default function Hero({ hero }: HeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.5 }}
-            className="text-2xl sm:text-3xl font-light text-primary-text leading-tight drop-shadow-md"
+            className="text-2xl sm:text-3xl font-semibold text-primary-text leading-tight drop-shadow-md"
           >
             {hero.tagline}
           </motion.p>
@@ -72,7 +76,7 @@ export default function Hero({ hero }: HeroProps) {
         >
           <h3 className="text-sm font-bold tracking-[0.2em] text-accent uppercase drop-shadow-sm">About Me</h3>
           <p className="text-primary-text leading-relaxed text-lg lg:text-xl font-medium relative z-10 drop-shadow-sm">
-            I am a passionate software engineer dedicated to building resilient, high-performance systems and intuitive user interfaces. I thrive at the intersection of complex backend architecture and sleek, engaging frontend design. My focus is on crafting digital experiences that are robust, scalable, and visually compelling.
+            I am a passionate software engineer focused on building high-performance systems. I enjoy solving complex problems through strong engineering principles and efficient algorithms, my focus is on designing scalable systems that are robust, optimized, and capable of handling real-world challenges.
           </p>
           <h3 className="text-sm font-bold tracking-[0.2em] text-accent uppercase drop-shadow-sm">I am Good at</h3>
           <ul className="space-y-3 mt-2">

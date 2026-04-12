@@ -74,7 +74,7 @@ export function getPortfolioData(): PortfolioData {
 
   let currentProject: any = null;
   let currentExperience: any = null;
-  let inProjectArray = ''; 
+  let inProjectArray = '';
 
   const extractVal = (line: string, prefix: string) => line.substring(prefix.length).trim();
 
@@ -123,8 +123,8 @@ export function getPortfolioData(): PortfolioData {
           edu.duration = lines[++i];
         }
         if (i + 1 < lines.length) {
-           const cgpaLine = lines[++i];
-           if (cgpaLine.startsWith('CGPA:')) edu.cgpa = extractVal(cgpaLine, 'CGPA:');
+          const cgpaLine = lines[++i];
+          if (cgpaLine.startsWith('CGPA:')) edu.cgpa = extractVal(cgpaLine, 'CGPA:');
         }
         result.education.push(edu);
       }
@@ -132,14 +132,14 @@ export function getPortfolioData(): PortfolioData {
       if (line.startsWith('Project ')) {
         if (currentProject) result.projects.push(currentProject);
         currentProject = { title: extractVal(line, line.split(':')[0] + ':'), problem: '', techStack: [], description: '', keyFeatures: [], links: { github: '', live: '' }, logo: '' };
-        
+
         // Auto-assign logos based on titles
         const lowerTitle = currentProject.title.toLowerCase();
         if (lowerTitle.includes('career pilot')) currentProject.logo = '/AICareerPilotLogo.png';
         else if (lowerTitle.includes('ride') || lowerTitle.includes('ridenow')) currentProject.logo = '/RideNowLogo.png';
         else if (lowerTitle.includes('chemistry') || lowerTitle.includes('virtual lab')) currentProject.logo = '/VirtualLabLogo.jpg';
         else if (lowerTitle.includes('cookbook') || lowerTitle.includes('ai cookbook')) currentProject.logo = '/AICookBookLogo.png';
-        
+
         inProjectArray = '';
       } else if (line.startsWith('Problem:')) {
         currentProject.problem = extractVal(line, 'Problem:');
@@ -176,59 +176,68 @@ export function getPortfolioData(): PortfolioData {
           currentExperience.company = cLine;
         }
         // Look for duration line
-        if (i + 1 < lines.length && (lines[i+1].includes(' - ') || lines[i+1].includes('Present') || lines[i+1].includes('Dec'))) {
+        if (i + 1 < lines.length && (lines[i + 1].includes(' - ') || lines[i + 1].includes('Present') || lines[i + 1].includes('Dec'))) {
           currentExperience.duration = lines[++i];
         }
       } else if (line.startsWith('Responsibilities:')) {
-         // nothing
+        // nothing
       } else {
-         if (currentExperience) currentExperience.responsibilities.push(line);
+        if (currentExperience) currentExperience.responsibilities.push(line);
       }
     } else if (currentSection.includes('CODING PROFILES') || currentSection.includes('SECTION 6')) {
-       if (line.includes(': ')) {
-         const parts = line.split(': ');
-         const name = parts[0];
-         const link = parts.slice(1).join(': ');
-         let desc = '';
-         if (i + 1 < lines.length && !lines[i + 1].includes(': ') && !lines[i + 1].startsWith('---') && !lines[i + 1].startsWith('SECTION')) {
-           desc = lines[++i];
-         }
-         result.codingProfiles.push({ name, link, description: desc });
-       }
-    } else if (currentSection.includes('ACHIEVEMENTS') || currentSection.includes('SECTION 7')) {
-       if (line.includes('Sigma') || line.includes('Data Structures') || line.includes('Internship') || line.includes('Virtual Internship') || line.includes('NullClass')) {
-         let certName = line;
-         let siteLink = '';
-         
-         // Extract site link if present in brackets (e.g., "(Apna College link - https://...)")
-         const siteMatch = line.match(/\((.*?)\s+link\s+-\s+(https?:\/\/.*?)\)/);
-         if (siteMatch) {
-           siteLink = siteMatch[2].trim();
-           // Clean up name by removing the site link part
-           certName = line.replace(siteMatch[0], '').trim();
-         }
-         
-         let cert: any = { name: certName, link: '', siteLink };
-         if (i + 1 < lines.length && lines[i+1].startsWith('link - ')) {
-           cert.link = extractVal(lines[++i], 'link - ');
-         }
-         result.certificates.push(cert);
-       }
+      if (line.includes(': ')) {
+        const parts = line.split(': ');
+        const name = parts[0];
+        const link = parts.slice(1).join(': ');
+        let desc = '';
+        if (i + 1 < lines.length && !lines[i + 1].includes(': ') && !lines[i + 1].startsWith('---') && !lines[i + 1].startsWith('SECTION')) {
+          desc = lines[++i];
+        }
+        result.codingProfiles.push({ name, link, description: desc });
+      }
+    } else if (currentSection.includes('CERTIFICATES') || currentSection.includes('SECTION 7')) {
+      if (line.includes('Sigma') || line.includes('Data Structures') || line.includes('Internship') || line.includes('Virtual Internship') || line.includes('NullClass')) {
+        let certName = line;
+        let siteLink = '';
+
+        const siteMatch = line.match(/\((.*?)\s+link\s+-\s+(https?:\/\/.*?)\)/);
+        if (siteMatch) {
+          siteLink = siteMatch[2].trim();
+          certName = line.replace(siteMatch[0], '').trim();
+        }
+
+        let cert: any = { name: certName, link: '', siteLink, duration: '' };
+        while (i + 1 < lines.length && 
+               !lines[i + 1].includes('Sigma') && 
+               !lines[i + 1].includes('Data Structures') && 
+               !lines[i + 1].includes('Internship') && 
+               !lines[i + 1].includes('NullClass') && 
+               !lines[i + 1].startsWith('---') && 
+               !lines[i + 1].startsWith('SECTION')) {
+          let nextLine = lines[++i];
+          if (nextLine.startsWith('link - ')) {
+            cert.link = extractVal(nextLine, 'link - ');
+          } else if (nextLine.trim() !== '') {
+            cert.duration = nextLine.trim();
+          }
+        }
+        result.certificates.push(cert);
+      }
     } else if (currentSection.includes('CONTACT') || currentSection.includes('SECTION 9')) {
-       if (line.startsWith('📞')) result.contact.phone = extractVal(line, '📞');
-       else if (line.startsWith('✉️')) {
-         let eml = extractVal(line, '✉️');
-         if (eml.includes('[')) {
-            const m = eml.match(/\[(.*?)\]/);
-            if (m) result.contact.email = m[1];
-         } else {
-            result.contact.email = eml;
-         }
-       }
-       else if (line.startsWith('🔗')) result.contact.linkedin = extractVal(line, '🔗');
+      if (line.startsWith('📞')) result.contact.phone = extractVal(line, '📞');
+      else if (line.startsWith('✉️')) {
+        let eml = extractVal(line, '✉️');
+        if (eml.includes('[')) {
+          const m = eml.match(/\[(.*?)\]/);
+          if (m) result.contact.email = m[1];
+        } else {
+          result.contact.email = eml;
+        }
+      }
+      else if (line.startsWith('🔗')) result.contact.linkedin = extractVal(line, '🔗');
     }
   }
-  
+
   if (currentProject) result.projects.push(currentProject);
   if (currentExperience) result.experience.push(currentExperience);
 

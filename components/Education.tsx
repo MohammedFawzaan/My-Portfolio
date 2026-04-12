@@ -25,7 +25,7 @@ export default function Education({ education }: { education: EducationItem[] })
   });
 
   return (
-    <section id="education" className="py-12 bg-section-alt relative">
+    <section id="education" className="py-12 bg-transparent relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2 
@@ -64,11 +64,11 @@ export default function Education({ education }: { education: EducationItem[] })
               transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
               className="mb-12 sm:mb-16 relative last:mb-0 group"
             >
-              <div className="absolute -left-12 sm:-left-13 md:-left-14 lg:-left-16 w-10 h-10 bg-background border-2 border-accent rounded-full flex items-center justify-center text-accent z-10 shadow-[0_0_15px_rgba(6,182,212,0.5)] group-hover:scale-125 transition-transform duration-300">
+              <div className="absolute -left-12 sm:-left-13 md:-left-14 lg:-left-16 w-10 h-10 bg-background border-2 border-accent rounded-full flex items-center justify-center text-accent z-10 shadow-[0_0_15px_rgba(59,130,246,0.5)] group-hover:scale-125 transition-transform duration-300">
                 <GraduationCap size={20} />
               </div>
               
-              <div className="glass p-6 sm:p-8 rounded-2xl flex flex-col gap-3 group-hover:border-accent/50 transition-colors duration-300 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] relative overflow-hidden">
+              <div className="glass p-6 sm:p-8 rounded-2xl flex flex-col gap-3 group-hover:border-accent/50 transition-all duration-300 transform group-hover:-translate-y-2 group-hover:scale-[1.01] hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] relative overflow-hidden">
                 {/* Internal Glow */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl" />
                 
@@ -79,7 +79,7 @@ export default function Education({ education }: { education: EducationItem[] })
                   {item.degree}
                 </h4>
                 <div className="flex items-center gap-3">
-                  <span className="text-secondary-text font-bold text-lg sm:text-xl">
+                  <span className="text-indigo-600 font-bold text-lg sm:text-xl">
                     {item.college}
                   </span>
                   {item.link && (
@@ -95,7 +95,7 @@ export default function Education({ education }: { education: EducationItem[] })
                   )}
                 </div>
                 {item.cgpa && (
-                  <p className="mt-4 text-primary-text bg-accent/10 border border-accent/20 inline-block px-5 py-2 rounded-full text-sm font-bold w-fit shadow-[inset_0_0_10px_rgba(6,182,212,0.1)]">
+                  <p className="mt-4 text-primary-text bg-accent/10 border border-accent/20 inline-block px-5 py-2 rounded-full text-sm font-bold w-fit shadow-[inset_0_0_10px_rgba(59,130,246,0.1)]">
                     CGPA: {item.cgpa}
                   </p>
                 )}

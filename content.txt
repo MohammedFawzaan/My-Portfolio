@@ -186,21 +186,23 @@ GitHub: https://github.com/MohammedFawzaan
 
 ---
 
-SECTION 7: ACHIEVEMENTS & CERTIFICATIONS
-
-3rd Prize – DSAThon (College Event)
-2nd Prize – Blind Coding, Sanketika TechFiesta 2025 (National Level)
-1st Prize – Mind Over Code, Sanketika TechFiesta 2026 (National Level)
-1st Prize – Blind Coding, Talent Hunt (College Event)
+SECTION 7: CERTIFICATIONS
 
 Sigma 2.0 – Full Stack Web Development (Apna College link - https://www.apnacollege.in/)
+Feb 2024 to June 2024.
 link - https://drive.google.com/file/d/1-8qgvAChD69dmVoVJxCmwsF6rt9MWWOV
+
 Data Structures & Algorithms in Java (Apna College link - https://www.apnacollege.in/)
+June 2024 to Sep 2024.
 link - https://drive.google.com/file/d/16d5-uoDMeRbcSlAoHztqDL6Xo0BKWnqx
-Virtual Internship – Walmart (Forage link - https://www.theforage.com/ ) 
+
+Virtual Internship – Walmart (Forage link - https://www.theforage.com/ )
 link - https://drive.google.com/file/d/17WB2XKMJrWgtYTs6xNQe-c90nVWs0V5b
+Sep 2025 to Oct 2025
+
 NullClass FullStack development virtual internship (NullClass link - https://nullclass.com/)
 link - https://drive.google.com/file/d/1ND_XCrlN5H9JP0JI15oL3OFdRuqfj45O
+Oct 2025 to Nov 2025
 
 ---
 

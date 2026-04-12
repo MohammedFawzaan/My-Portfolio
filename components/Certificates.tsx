@@ -6,11 +6,12 @@ interface CertificateItem {
   name: string;
   link: string;
   siteLink: string;
+  duration?: string;
 }
 
-export default function Achievements({ certificates }: { certificates: CertificateItem[] }) {
+export default function Certificates({ certificates }: { certificates: CertificateItem[] }) {
   return (
-    <section id="achievements" className="py-12 bg-background relative overflow-hidden">
+    <section id="certificates" className="py-12 bg-transparent relative overflow-hidden">
       {/* Subtle Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -43,27 +44,35 @@ export default function Achievements({ certificates }: { certificates: Certifica
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="glass p-4 sm:p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between group hover:border-accent/40 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(6,182,212,0.1)] gap-4 sm:gap-0"
+              whileHover={{ y: -5, scale: 1.01 }}
+              className="glass p-5 sm:p-6 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between group hover:border-accent/40 transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] gap-5 sm:gap-4"
             >
-              <div className="flex items-center gap-3 sm:gap-5 mr-0 sm:mr-4 w-full sm:w-auto">
-                <div className="p-2 sm:p-3 bg-accent/10 rounded-xl text-accent group-hover:bg-accent group-hover:text-background transition-colors duration-300 shrink-0">
-                  <Award className="w-5 h-5 sm:w-6 sm:h-6" />
+              <div className="flex items-start gap-4 flex-1 min-w-0 w-full">
+                <div className="p-3 bg-accent/10 rounded-xl text-accent group-hover:bg-accent group-hover:text-white transition-colors duration-300 shrink-0 mt-0.5">
+                  <Award size={24} />
                 </div>
-                <h4 className="text-sm sm:text-xl font-bold text-primary-text leading-tight drop-shadow-sm group-hover:text-accent transition-colors flex-1 pr-2">
-                  {cert.name}
-                </h4>
+                <div className="flex flex-col min-w-0 flex-1">
+                  <h4 className="text-[15px] sm:text-lg font-bold text-primary-text leading-tight group-hover:text-accent transition-colors break-words whitespace-normal">
+                    {cert.name}
+                  </h4>
+                  {cert.duration && (
+                    <span className="text-xs sm:text-sm font-medium text-secondary-text mt-1.5 opacity-80">
+                      {cert.duration}
+                    </span>
+                  )}
+                </div>
               </div>
               
-              <div className="flex gap-2 sm:gap-3 shrink-0 self-end sm:self-auto">
+              <div className="flex gap-3 shrink-0 self-end sm:self-auto">
                 {cert.siteLink && (
                   <a 
                     href={cert.siteLink} 
                     target="_blank" 
                     rel="noreferrer"
-                    className="p-2 sm:p-3 bg-section-alt border border-border/50 hover:border-accent rounded-xl text-accent transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-md bg-opacity-50"
+                    className="p-2.5 sm:p-3 bg-section-alt border border-border/50 hover:border-accent rounded-xl text-accent transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-md bg-opacity-50"
                     title="Visit Platform Site"
                   >
-                    <Globe className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+                    <Globe size={20} />
                   </a>
                 )}
                 {cert.link && (
@@ -71,10 +80,10 @@ export default function Achievements({ certificates }: { certificates: Certifica
                     href={cert.link} 
                     target="_blank" 
                     rel="noreferrer"
-                    className="p-2 sm:p-3 bg-gradient-to-r from-accent to-purple-500 border border-transparent hover:border-white/20 rounded-xl text-white transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-md shadow-accent/20"
+                    className="p-2.5 sm:p-3 bg-gradient-to-r from-accent to-purple-500 border border-transparent hover:border-white/20 rounded-xl text-white transition-all duration-300 hover:scale-110 flex items-center justify-center shadow-md shadow-accent/20"
                     title="View Certificate"
                   >
-                    <ExternalLink className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+                    <ExternalLink size={20} />
                   </a>
                 )}
               </div>
