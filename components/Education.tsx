@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, ExternalLink } from "lucide-react";
 
 interface EducationItem {
   degree: string;
@@ -25,7 +25,7 @@ export default function Education({ education }: { education: EducationItem[] })
   });
 
   return (
-    <section id="education" className="py-32 bg-section-alt">
+    <section id="education" className="py-32 bg-section-alt relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2 
@@ -78,20 +78,22 @@ export default function Education({ education }: { education: EducationItem[] })
                 <h4 className="text-2xl sm:text-3xl font-extrabold text-primary-text drop-shadow-sm">
                   {item.degree}
                 </h4>
-                {item.link ? (
-                  <a 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="text-secondary-text hover:text-white transition-colors font-semibold text-lg sm:text-xl w-fit"
-                  >
-                    {item.college}
-                  </a>
-                ) : (
-                  <span className="text-secondary-text font-semibold text-lg sm:text-xl">
+                <div className="flex items-center gap-3">
+                  <span className="text-secondary-text font-bold text-lg sm:text-xl">
                     {item.college}
                   </span>
-                )}
+                  {item.link && (
+                    <a 
+                      href={item.link} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="p-2 bg-background border border-border/50 hover:border-accent rounded-lg text-accent transition-all duration-300 hover:scale-110 shadow-sm"
+                      title="Visit Site"
+                    >
+                      <ExternalLink size={18} />
+                    </a>
+                  )}
+                </div>
                 {item.cgpa && (
                   <p className="mt-4 text-primary-text bg-accent/10 border border-accent/20 inline-block px-5 py-2 rounded-full text-sm font-bold w-fit shadow-[inset_0_0_10px_rgba(6,182,212,0.1)]">
                     CGPA: {item.cgpa}

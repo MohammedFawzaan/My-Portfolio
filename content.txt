@@ -165,6 +165,7 @@ SECTION 5: EXPERIENCE
 
 Role: Software Development Intern
 Company: Managix Technology - link - https://managixglobal.com
+Dec 2025 - Present
 
 Responsibilities:
 Building backend APIs using NestJS
@@ -192,9 +193,14 @@ SECTION 7: ACHIEVEMENTS & CERTIFICATIONS
 1st Prize – Mind Over Code, Sanketika TechFiesta 2026 (National Level)
 1st Prize – Blind Coding, Talent Hunt (College Event)
 
-Sigma 2.0 – Full Stack Web Development (Apna College)
-Data Structures & Algorithms in Java (Apna College)
-Virtual Internship – Walmart (Forage)
+Sigma 2.0 – Full Stack Web Development (Apna College link - https://www.apnacollege.in/)
+link - https://drive.google.com/file/d/1-8qgvAChD69dmVoVJxCmwsF6rt9MWWOV
+Data Structures & Algorithms in Java (Apna College link - https://www.apnacollege.in/)
+link - https://drive.google.com/file/d/16d5-uoDMeRbcSlAoHztqDL6Xo0BKWnqx
+Virtual Internship – Walmart (Forage link - https://www.theforage.com/ ) 
+link - https://drive.google.com/file/d/17WB2XKMJrWgtYTs6xNQe-c90nVWs0V5b
+NullClass FullStack development virtual internship (NullClass link - https://nullclass.com/)
+link - https://drive.google.com/file/d/1ND_XCrlN5H9JP0JI15oL3OFdRuqfj45O
 
 ---
 

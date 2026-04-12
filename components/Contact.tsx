@@ -58,7 +58,7 @@ export default function Contact({ contact }: ContactProps) {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background">
+    <section id="contact" className="py-24 bg-background relative">
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="mb-20">
           <motion.h2 

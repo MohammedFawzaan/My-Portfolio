@@ -8,15 +8,15 @@ interface HeroProps {
     name: string;
     title: string;
     tagline: string;
-    summary: string; // Ignored as per new requirement
+    summary: string;
   };
 }
 
 const letterVariants: Variants = {
   hidden: { opacity: 0, y: 50, rotateX: -90 },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     rotateX: 0,
     transition: { type: "spring", stiffness: 100, damping: 10 }
   }
@@ -51,10 +51,10 @@ export default function Hero({ hero }: HeroProps) {
               transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
               className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden aspect-square shadow-[0_0_40px_rgba(6,182,212,0.4)] border-2 border-accent"
             >
-              <Image src="/avatar.jpeg" alt={hero.name} fill className="object-cover" priority />
+              <Image src="/avatar.jpeg" alt={hero.name} fill className="object-cover" priority sizes="(max-width: 768px) 128px, 160px" />
             </motion.div>
             <div className="flex flex-col">
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
@@ -62,7 +62,7 @@ export default function Hero({ hero }: HeroProps) {
               >
                 {hero.name}
               </motion.h1>
-              <motion.h2 
+              <motion.h2
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", stiffness: 50, delay: 0.8 }}
@@ -72,7 +72,7 @@ export default function Hero({ hero }: HeroProps) {
               </motion.h2>
             </div>
           </div>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.5 }}
@@ -93,38 +93,39 @@ export default function Hero({ hero }: HeroProps) {
           <p className="text-primary-text leading-relaxed text-lg lg:text-xl font-medium relative z-10 drop-shadow-sm">
             I am a passionate software engineer dedicated to building resilient, high-performance systems and intuitive user interfaces. I thrive at the intersection of complex backend architecture and sleek, engaging frontend design. My focus is on crafting digital experiences that are robust, scalable, and visually compelling.
           </p>
+          <h3 className="text-sm font-bold tracking-[0.2em] text-accent uppercase drop-shadow-sm">I am Good at</h3>
           <ul className="space-y-3 mt-2">
-            <motion.li 
+            <motion.li
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.4 }}
               className="flex items-center gap-3 text-primary-text font-bold text-lg drop-shadow-sm"
             >
-              <span className="text-purple-500">▹</span> Scalable System Architecture
+              <span className="text-purple-500">▹</span> Data Structures & Algorithms (Problem Solving)
             </motion.li>
-            <motion.li 
+            <motion.li
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.5 }}
               className="flex items-center gap-3 text-primary-text font-bold text-lg drop-shadow-sm"
             >
-              <span className="text-purple-500">▹</span> Performance Optimization
+              <span className="text-purple-500">▹</span> Full-Stack Web Development
             </motion.li>
-            <motion.li 
+            <motion.li
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.6 }}
               className="flex items-center gap-3 text-primary-text font-bold text-lg drop-shadow-sm"
             >
-              <span className="text-purple-500">▹</span> Pixel-Perfect UI/UX Design
+              <span className="text-purple-500">▹</span> Mobile App Development
             </motion.li>
-            <motion.li 
+            <motion.li
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1.7 }}
               className="flex items-center gap-3 text-primary-text font-bold text-lg drop-shadow-sm"
             >
-              <span className="text-purple-500">▹</span> Cross-Platform Mobile Development
+              <span className="text-purple-500">▹</span> Backend API & System Design
             </motion.li>
           </ul>
         </motion.div>

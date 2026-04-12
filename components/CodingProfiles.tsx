@@ -13,6 +13,22 @@ interface ProfileItem {
 export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
+  // Reorder to move GeeksforGeeks to last and apply requested text update
+  const processedProfiles = [...profiles]
+    .map(p => {
+      if (p.name.toLowerCase().includes('geeks') || p.name.toLowerCase().includes('gfg')) {
+        return { ...p, description: "Solved 100+ dsa problems" };
+      }
+      return p;
+    })
+    .sort((a, b) => {
+      const aGfg = a.name.toLowerCase().includes('geeks') || a.name.toLowerCase().includes('gfg');
+      const bGfg = b.name.toLowerCase().includes('geeks') || b.name.toLowerCase().includes('gfg');
+      if (aGfg && !bGfg) return 1;
+      if (!aGfg && bGfg) return -1;
+      return 0;
+    });
+
   const toggle = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
@@ -20,8 +36,8 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
   const getImageSrc = (name: string) => {
     const lowerName = name.toLowerCase();
     if (lowerName.includes("leetcode")) return "/leetcode-dashboard.png";
-    if (lowerName.includes("geek") || lowerName.includes("gfg")) return "/gfg-dashboard.png";
     if (lowerName.includes("github")) return "/github-dashboard.png";
+    // gfg dashboard removed per user request
     return null;
   };
 
@@ -34,7 +50,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
   };
 
   return (
-    <section id="coding-profiles" className="py-24 bg-section-alt">
+    <section id="coding-profiles" className="py-24 bg-section-alt relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
           <motion.h2 
@@ -57,10 +73,11 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
         </div>
 
         <div className="flex flex-col gap-6">
-          {profiles.map((profile, index) => {
+          {processedProfiles.map((profile, index) => {
             const isExpanded = expandedIndex === index;
             const imgSrc = getImageSrc(profile.name);
             const iconSrc = getIconSrc(profile.name);
+            const isGfg = profile.name.toLowerCase().includes('geeks') || profile.name.toLowerCase().includes('gfg');
 
             return (
               <motion.div 
@@ -72,8 +89,8 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                 className="glass overflow-hidden transition-colors hover:border-accent shadow-lg"
               >
                 <div 
-                  className="px-8 py-6 flex items-center justify-between cursor-pointer"
-                  onClick={() => toggle(index)}
+                  className={`px-8 py-6 flex items-center justify-between ${!isGfg ? 'cursor-pointer' : ''}`}
+                  onClick={() => !isGfg && toggle(index)}
                 >
                   <div className="flex items-center gap-4">
                     {iconSrc && (
@@ -99,9 +116,11 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                     >
                       <ExternalLink size={20} />
                     </a>
-                    <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} className="p-1">
-                      <ChevronDown size={20} />
-                    </motion.div>
+                    {!isGfg && (
+                      <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} className="p-1">
+                        <ChevronDown size={20} />
+                      </motion.div>
+                    )}
                   </div>
                 </div>
 
@@ -111,7 +130,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                 </p>
 
                 <AnimatePresence>
-                  {isExpanded && imgSrc && (
+                  {!isGfg && isExpanded && imgSrc && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}

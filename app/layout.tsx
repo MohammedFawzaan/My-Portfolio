@@ -10,6 +10,9 @@ const interFont = Inter({
 export const metadata: Metadata = {
   title: "Mohammed Fawzaan | Portfolio",
   description: "Software Development Engineer Portfolio. Building scalable web & mobile products with modern technologies.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -22,7 +25,7 @@ export default function RootLayout({
       lang="en"
       className={`${interFont.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col relative">{children}</body>
     </html>
   );
 }

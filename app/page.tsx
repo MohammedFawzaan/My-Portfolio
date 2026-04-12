@@ -35,7 +35,7 @@ export default function Home() {
         <Projects projects={data.projects} />
         <Experience experience={data.experience} />
         <CodingProfiles profiles={data.codingProfiles} />
-        <Achievements data={data.achievementsCertifications} />
+        <Achievements certificates={data.certificates} />
         <ResumeSection />
         <Contact contact={data.contact} />
       </main>

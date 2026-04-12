@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 
 const getIconUrl = (skillName: string) => {
-  // Use exact brand colors and icons where devicon falls short
   const map: Record<string, string> = {
     "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
     "C": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg",
@@ -12,7 +11,7 @@ const getIconUrl = (skillName: string) => {
     "React.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
     "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original-wordmark.svg",
     "React Native": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
-    "Expo": "https://cdn.simpleicons.org/expo/FFFFFF", // Expo logo white
+    "Expo": "https://cdn.simpleicons.org/expo/FFFFFF",
     "Vite": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vite/vite-original.svg",
     "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
     "Express.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg", // Using wordmark via simple icon logic below if it looks better, but express original usually works
@@ -23,20 +22,19 @@ const getIconUrl = (skillName: string) => {
     "Docker": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
     "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
     "Prisma ORM": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg",
-    "TypeORM": "https://cdn.simpleicons.org/typeorm/FE0803", // TypeORM logo in red
+    "TypeORM": "https://cdn.simpleicons.org/typeorm/FE0803",
     "HTML": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
     "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
     "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
-    "ShadCN UI": "https://cdn.simpleicons.org/shadcnui/FFFFFF", // Shadcn UI logo in white
+    "ShadCN UI": "https://cdn.simpleicons.org/shadcnui/FFFFFF",
   };
-  
+
   if (skillName === "Express.js") return "https://cdn.simpleicons.org/express/FFFFFF";
-  
+
   return map[skillName] || `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/devicon/devicon-original.svg`;
 };
 
 export default function Skills({ skills }: { skills: string[] }) {
-  // Remove SQL from rendering
   const filteredSkills = skills.filter((s) => s.trim().toUpperCase() !== "SQL");
 
   return (
@@ -45,7 +43,7 @@ export default function Skills({ skills }: { skills: string[] }) {
 
       <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
         <div className="mb-20 text-center">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -53,18 +51,18 @@ export default function Skills({ skills }: { skills: string[] }) {
           >
             Capabilities
           </motion.h2>
-          <motion.h3 
+          <motion.h3
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, type: "spring" as const }}
             className="text-4xl sm:text-6xl font-extrabold text-primary-text drop-shadow-lg"
           >
-            Technical Arsenal
+            Technical Skills
           </motion.h3>
         </div>
 
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -83,34 +81,34 @@ export default function Skills({ skills }: { skills: string[] }) {
                 key={skill}
                 variants={{
                   hidden: { opacity: 0, scale: 0, y: 50 },
-                  visible: { 
-                    opacity: 1, 
-                    scale: 1, 
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
                     y: 0,
                     transition: { type: "spring" as const, stiffness: 100, damping: 10 }
                   }
                 }}
-                whileHover={{ 
-                  scale: 1.3, 
+                whileHover={{
+                  scale: 1.3,
                   rotate: Math.random() * 10 - 5,
                   zIndex: 20
                 }}
                 className="flex flex-col items-center justify-center gap-4 cursor-pointer group"
               >
-                <motion.div 
+                <motion.div
                   animate={{ y: [0, -10, 0] }}
-                  transition={{ 
-                    duration: floatDuration, 
-                    repeat: Infinity, 
+                  transition={{
+                    duration: floatDuration,
+                    repeat: Infinity,
                     ease: "easeInOut",
                     delay: floatDelay
                   }}
                   className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center filter drop-shadow-[0_5px_10px_rgba(0,0,0,0.5)] group-hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.8)] transition-all duration-300"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
-                    src={getIconUrl(skill)} 
-                    alt={skill} 
+                  <img
+                    src={getIconUrl(skill)}
+                    alt={skill}
                     className="w-full h-full object-contain"
                   />
                 </motion.div>
