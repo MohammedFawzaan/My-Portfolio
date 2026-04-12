@@ -1,0 +1,51 @@
+"use client";
+import { motion } from "framer-motion";
+import { Download } from "lucide-react";
+import Image from "next/image";
+
+export default function ResumeSection() {
+  return (
+    <section id="resume" className="py-24 bg-section-alt">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center flex flex-col items-center">
+        <motion.h3 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1, type: "spring" as const }}
+          className="text-4xl sm:text-6xl font-extrabold text-primary-text mb-16 drop-shadow-lg"
+        >
+          Resume
+        </motion.h3>
+
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="relative w-full max-w-2xl aspect-[1/1.4] border border-border shadow-[0_0_30px_rgba(6,182,212,0.15)] mb-12 overflow-hidden rounded-xl bg-surface/50 backdrop-blur-sm"
+        >
+          <Image 
+            src="/resume.jpeg" 
+            alt="Mohammed Fawzaan Resume Preview" 
+            fill 
+            className="object-contain"
+          />
+        </motion.div>
+
+        <motion.a 
+          href="/Resume7.pdf" 
+          download="Mohammed_Fawzaan_Resume.pdf"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent to-purple-500 text-white font-bold text-lg rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all"
+        >
+          <Download size={24} />
+          Download Resume
+        </motion.a>
+      </div>
+    </section>
+  );
+}

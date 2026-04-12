@@ -1,0 +1,216 @@
+SECTION 1: HERO + ABOUT
+
+Name: Mohammed Fawzaan
+Title: Software Development Engineer
+
+Tagline: Building scalable web & mobile products with modern technologies.
+
+Professional Summary:
+Final-year B.Tech Computer Science student from Lords Institute of Technology with hands-on experience in full-stack development. Currently working as a Software Development Intern at Managix Technology, building real-world web and mobile applications. Skilled in modern technologies including React, Next.js, Node.js, and React Native, with a strong focus on scalable system design. Experienced in developing production-ready features, integrating APIs, and managing deployments. Passionate about building impactful products that solve real-world problems.
+
+---
+
+SECTION 2: Skills
+
+Java
+C
+Python
+JavaScript
+TypeScript
+
+React.js
+Next.js
+React Native
+Expo
+Vite
+
+Node.js
+Express.js
+NestJS
+
+SQL
+MySQL
+MongoDB
+PostgreSQL
+
+Docker
+Git
+Prisma ORM
+TypeORM
+
+HTML
+CSS
+Tailwind CSS
+ShadCN UI
+
+---
+
+SECTION 3: Education
+
+B.Tech in Computer Science and Engineering
+Lords Institute of Technology link - https://www.lords.ac.in/
+2022 November - 2026 June
+
+CGPA: 8.5
+
+---
+
+SECTION 4: PROJECTS
+
+Project 1: AI Career Pilot
+
+Problem: Helps students discover career paths and prepare using AI-driven insights.
+
+Tech Stack:
+Next.js
+NeonDB
+PostgreSQL
+Prisma ORM
+ShadCN UI
+Tailwind CSS
+Google Gemini API
+
+Description:
+AI Career Pilot is a comprehensive, AI-powered platform designed to supercharge your career journey. By leveraging Google's Gemini LLM and advanced career assessment algorithms, it helps users discover their ideal career path, build professional resumes, generate tailored cover letters, find internships, and practice mock interviews with real-time AI feedback.
+
+Key Features:
+Career discovery engine with a short assessment
+AI-based career & skill recommendations
+Location-based internship search
+Personalized roadmap generation
+Resume and cover letter builder
+AI-powered mock interview generation
+
+Links:
+GitHub: https://github.com/MohammedFawzaan/AI-Career-Pilot
+Live Demo: https://ai-career-pilot-ecru.vercel.app/
+
+---
+
+Project 2: Ride Booking Web Application
+
+Problem: Enables real-time ride booking and tracking similar to Uber.
+
+Tech Stack:
+MERN Stack (MongoDB, Express.js, React.js, Node.js)
+Tailwind CSS
+GSAP
+Google Maps API
+Socket.io
+
+Description:
+A full-stack Ride-booking application inspired by Uber. Built with the MERN stack and Google Maps APIs, RideNow enables users to book rides in real time while captains (drivers) accept and complete trips. It features live tracking & real-time navigation, OTP-secured confirmations and a modern responsive UI.
+
+Key Features:
+Real-time ride booking
+Real-time ride & location tracking using Google Maps
+Interactive UI with animations
+
+Links:
+GitHub: https://github.com/MohammedFawzaan/RideNow-RideBookingApp
+Live Demo: coming-soon
+
+---
+
+Project 3: Virtual Chemistry Lab
+
+Problem: Provides a safe virtual environment to perform chemistry experiments.
+
+Tech Stack:
+MERN Stack
+Tailwind CSS
+
+Description:
+Virtual Chemistry Lab is an interactive web-based platform that allows students to perform and visualize chemistry experiments in a simulated environment. It aims to enhance conceptual understanding through hands-on virtual experimentation without the need for a physical lab.
+
+Key Features:
+Chemistry experiments included such as distillation, titration, salt-analysis
+Live experiment simulations
+Dashboard for data insights
+Beautiful and responsive UI
+
+Links:
+GitHub: https://github.com/MohammedFawzaan/Virtual-Chemistry-Laboratory
+Live Demo: https://virtual-lab-experience.vercel.app/home
+
+---
+
+Project 4: AI Cookbook Mobile Application
+
+Problem: Helps users generate recipes instantly using AI.
+
+Tech Stack:
+React Native
+Expo
+Tailwind CSS (NativeWind)
+Strapi CMS
+Google Gemini API
+
+Description:
+CookBook AI is a feature-rich React Native app that leverages Google Gemini AI to instantly generate complete recipes from a user-provided dish name. Users can authenticate with Google via Clerk, browse recipes by category, explore the full global recipe feed, and manage their personal recipe collection — all with a beautiful dark/light theme toggle.
+
+Key Features:
+AI-generated recipes & images
+Search and filter meals
+Mobile-first UI/UX
+CMS-based content management
+
+Links:
+GitHub: https://github.com/MohammedFawzaan/CookBook-AI-Application
+Live Demo: coming-soon
+
+---
+
+SECTION 5: EXPERIENCE
+
+Role: Software Development Intern
+Company: Managix Technology - link - https://managixglobal.com
+
+Responsibilities:
+Building backend APIs using NestJS
+Working with databases like MySQL
+Managing VPS deployments on DigitalOcean
+Developing mobile applications using React Native and Expo
+
+---
+
+SECTION 6: CODING PROFILES
+
+LeetCode: https://leetcode.com/u/Mohammed_Fawzaan
+Solved 200+ dsa problems
+GeeksforGeeks: https://www.geeksforgeeks.org/profile/fawzaauxl8
+Solved 150+ dsa problems
+GitHub: https://github.com/MohammedFawzaan
+30+ Repositories with 5 Real Projects
+
+---
+
+SECTION 7: ACHIEVEMENTS & CERTIFICATIONS
+
+3rd Prize – DSAThon (College Event)
+2nd Prize – Blind Coding, Sanketika TechFiesta 2025 (National Level)
+1st Prize – Mind Over Code, Sanketika TechFiesta 2026 (National Level)
+1st Prize – Blind Coding, Talent Hunt (College Event)
+
+Sigma 2.0 – Full Stack Web Development (Apna College)
+Data Structures & Algorithms in Java (Apna College)
+Virtual Internship – Walmart (Forage)
+
+---
+
+SECTION 8: Resume
+
+Display resume picture with download button
+Downloadable resume + preview
+
+---
+
+SECTION 9: CONTACT
+
+📞 +91 9676237158
+✉️ [fawzaanmd31@gmail.com](mailto:fawzaanmd31@gmail.com)
+🔗 https://www.linkedin.com/in/mohammed-fawzaan-702958257
+
+SECTION 10: FOOTER
+
+Designed and Developed by Mohammed Fawzaan.
