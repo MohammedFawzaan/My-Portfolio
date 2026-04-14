@@ -143,7 +143,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                             src={imgSrc} 
                             alt={`${profile.name} Dashboard`} 
                             fill 
-                            className="object-cover" 
+                            className="object-contain" 
                           />
                         </div>
                       </div>

@@ -19,9 +19,8 @@ export default function NavBar({ navLinks }: NavBarProps) {
 
   return (
     <motion.header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/85 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
-      }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-background border-b border-border shadow-sm py-4" : "bg-background py-6"
+        }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -45,8 +44,12 @@ export default function NavBar({ navLinks }: NavBarProps) {
         </nav>
 
         {/* Mobile Toggle */}
-        <button className="lg:hidden text-primary-text" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        <button
+          className="lg:hidden p-2 text-primary-text cursor-pointer relative z-50"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
@@ -54,7 +57,7 @@ export default function NavBar({ navLinks }: NavBarProps) {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="lg:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-t border-border shadow-md"
+            className="lg:hidden absolute top-full left-0 w-full bg-background border-b border-border shadow-xl overflow-hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

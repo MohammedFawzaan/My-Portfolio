@@ -7,7 +7,7 @@ export default function ResumeSection() {
   return (
     <section id="resume" className="py-12 bg-transparent relative">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center flex flex-col items-center">
-        <motion.h3 
+        <motion.h3
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -17,24 +17,25 @@ export default function ResumeSection() {
           Resume
         </motion.h3>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="relative w-full max-w-2xl aspect-[1/1.4] border border-border shadow-[0_0_30px_rgba(59,130,246,0.12)] mb-12 overflow-hidden rounded-xl bg-surface/50 backdrop-blur-sm"
         >
-          <Image 
-            src="/resume.jpeg" 
-            alt="Mohammed Fawzaan Resume Preview" 
-            fill 
+          <Image
+            src="/resume.jpeg?v=last_update"
+            alt="Mohammed Fawzaan Resume Preview"
+            fill
+            unoptimized={true}
             className="object-contain"
             sizes="(max-width: 768px) 100vw, 800px"
           />
         </motion.div>
 
-        <motion.a 
-          href="/Resume7.pdf" 
+        <motion.a
+          href="/Resume.pdf?v=last_update"
           download="Mohammed_Fawzaan_Resume.pdf"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

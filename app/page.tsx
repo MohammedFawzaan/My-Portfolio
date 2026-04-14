@@ -23,7 +23,7 @@ export default function Home() {
     { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
     { name: "Profiles", href: "#coding-profiles" },
-    { name: "Certificates", href: "#certificates" },
+    // { name: "Certificates", href: "#certificates" },
     { name: "Resume", href: "#resume" },
     { name: "Contact", href: "#contact" },
   ];
@@ -40,7 +40,7 @@ export default function Home() {
         <Projects projects={data.projects} />
         <CodingProfiles profiles={data.codingProfiles} />
         <Education education={data.education} />
-        <Certificates certificates={data.certificates} />
+        {/* <Certificates certificates={data.certificates} /> */}
         <ResumeSection />
         <Contact contact={data.contact} />
       </main>
