@@ -4,6 +4,23 @@ import { Download } from "lucide-react";
 import Image from "next/image";
 
 export default function ResumeSection() {
+  const handleDownload = async () => {
+    try {
+      const response = await fetch("/Resume.pdf");
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Mohammed_Fawzaan_Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch {
+      window.open("/Resume.pdf", "_blank");
+    }
+  };
+
   return (
     <section id="resume" className="py-12 bg-transparent relative">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center flex flex-col items-center">
@@ -25,7 +42,7 @@ export default function ResumeSection() {
           className="relative w-full max-w-2xl aspect-[1/1.4] border border-border shadow-[0_0_30px_rgba(59,130,246,0.12)] mb-12 overflow-hidden rounded-xl bg-surface/50 backdrop-blur-sm"
         >
           <Image
-            src="/resume.jpeg?v=last_update"
+            src="/resume.jpeg"
             alt="Mohammed Fawzaan Resume Preview"
             fill
             unoptimized={true}
@@ -34,19 +51,18 @@ export default function ResumeSection() {
           />
         </motion.div>
 
-        <motion.a
-          href="/Resume.pdf?v=last_update"
-          download="Mohammed_Fawzaan_Resume.pdf"
+        <motion.button
+          onClick={handleDownload}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent to-purple-500 text-white font-bold text-lg rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all"
+          className="flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent to-purple-500 text-white font-bold text-lg rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all cursor-pointer"
         >
           <Download size={24} />
           Download Resume
-        </motion.a>
+        </motion.button>
       </div>
     </section>
   );

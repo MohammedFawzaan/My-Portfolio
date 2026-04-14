@@ -10,6 +10,31 @@ interface ProfileItem {
   description: string;
 }
 
+function DashboardImage({ src, alt }: { src: string; alt: string }) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+      {/* Loading skeleton */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse flex items-center justify-center z-10">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-10 h-10 border-3 border-accent/30 border-t-accent rounded-full animate-spin" />
+            <span className="text-sm font-medium text-secondary-text">Loading dashboard...</span>
+          </div>
+        </div>
+      )}
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className={`object-contain transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
+        onLoad={() => setIsLoading(false)}
+      />
+    </div>
+  );
+}
+
 export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }) {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
@@ -53,7 +78,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
     <section id="coding-profiles" className="py-12 bg-transparent relative">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-20">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -61,7 +86,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
           >
             Showcase
           </motion.h2>
-          <motion.h3 
+          <motion.h3
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -80,7 +105,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
             const isGfg = profile.name.toLowerCase().includes('geeks') || profile.name.toLowerCase().includes('gfg');
 
             return (
-              <motion.div 
+              <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -88,13 +113,13 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                 transition={{ delay: index * 0.1 }}
                 className="glass overflow-hidden transition-all duration-300 hover:border-accent/80 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] shadow-lg"
               >
-                <div 
+                <div
                   className={`px-4 sm:px-8 py-4 sm:py-6 flex items-center justify-between gap-4 ${!isGfg ? 'cursor-pointer' : ''}`}
                   onClick={() => !isGfg && toggle(index)}
                 >
                   <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
                     {iconSrc && (
-                       /* eslint-disable-next-line @next/next/no-img-element */
+                      /* eslint-disable-next-line @next/next/no-img-element */
                       <img src={iconSrc} alt={`${profile.name} logo`} className="w-6 h-6 sm:w-8 sm:h-8 object-contain drop-shadow-md" />
                     )}
                     <h4 className="text-lg sm:text-2xl font-bold text-primary-text drop-shadow-sm">
@@ -106,9 +131,9 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                     </p>
                   </div>
                   <div className="flex items-center gap-2 sm:gap-4 text-accent shrink-0">
-                    <a 
-                      href={profile.link} 
-                      target="_blank" 
+                    <a
+                      href={profile.link}
+                      target="_blank"
                       rel="noreferrer"
                       className="p-2 bg-background border border-border/50 hover:border-accent rounded-full transition-colors"
                       onClick={(e) => e.stopPropagation()}
@@ -138,14 +163,7 @@ export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }
                       className="overflow-hidden bg-section-alt border-t border-border"
                     >
                       <div className="p-6">
-                        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border shadow-[0_0_20px_rgba(59,130,246,0.1)]">
-                          <Image 
-                            src={imgSrc} 
-                            alt={`${profile.name} Dashboard`} 
-                            fill 
-                            className="object-contain" 
-                          />
-                        </div>
+                        <DashboardImage src={imgSrc} alt={`${profile.name} Dashboard`} />
                       </div>
                     </motion.div>
                   )}

@@ -1,6 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
 import { Menu, X } from "lucide-react";
 
 interface NavBarProps {
@@ -17,20 +16,38 @@ export default function NavBar({ navLinks }: NavBarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setIsOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleToggle = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
+
+  const handleLinkClick = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
   return (
-    <motion.header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-background border-b border-border shadow-sm py-4" : "bg-background py-6"
+    <header
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${isScrolled
+        ? "bg-background border-b border-border shadow-sm py-3"
+        : "bg-background py-4"
         }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
-        <a href="#hero" className="font-mono text-2xl font-extrabold tracking-tighter text-primary-text drop-shadow-sm">
+        <a
+          href="#hero"
+          className="font-mono text-2xl font-extrabold tracking-tighter text-primary-text drop-shadow-sm"
+        >
           &lt;Fawzaan /&gt;
         </a>
 
-        {/* Desktop */}
+        {/* Desktop Nav */}
         <nav className="hidden lg:flex gap-4 xl:gap-8">
           {navLinks.map((link) => (
             <a
@@ -43,40 +60,36 @@ export default function NavBar({ navLinks }: NavBarProps) {
           ))}
         </nav>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Toggle Button */}
         <button
-          className="lg:hidden p-2 text-primary-text cursor-pointer relative z-50"
-          onClick={() => setIsOpen(!isOpen)}
+          type="button"
+          className="lg:hidden flex items-center justify-center w-11 h-11 rounded-lg text-primary-text hover:bg-accent/10 active:bg-accent/20 transition-colors cursor-pointer"
+          onClick={handleToggle}
           aria-label="Toggle Menu"
+          aria-expanded={isOpen}
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="lg:hidden absolute top-full left-0 w-full bg-background border-b border-border shadow-xl overflow-hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-          >
-            <nav className="flex flex-col py-6 px-6 gap-6">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-primary-text font-medium text-lg hover:text-accent transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+      >
+        <nav className="flex flex-col py-4 px-6 gap-1 bg-background border-b border-border shadow-xl">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-primary-text font-medium text-lg hover:text-accent hover:bg-accent/5 transition-colors py-3 px-4 rounded-lg"
+              onClick={handleLinkClick}
+            >
+              {link.name}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
   );
 }
