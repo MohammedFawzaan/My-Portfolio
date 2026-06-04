@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#60A5FA" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="nodeGradA" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#A78BFA" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="nodeGradB" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#818CF8" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#4F46E5" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="96" fill="url(#bgGrad)"/>
+
+  <!-- Outer subtle ring -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#3B82F6" stroke-width="0.6" stroke-opacity="0.25"/>
+  <circle cx="100" cy="100" r="72" fill="none" stroke="#7C3AED" stroke-width="0.4" stroke-opacity="0.18"/>
+
+  <!-- Connection lines: core to satellites -->
+  <line x1="100" y1="100" x2="48"  y2="52"  stroke="#3B82F6" stroke-width="1.4" stroke-opacity="0.55"/>
+  <line x1="100" y1="100" x2="155" y2="60"  stroke="#7C3AED" stroke-width="1.4" stroke-opacity="0.55"/>
+  <line x1="100" y1="100" x2="162" y2="118" stroke="#3B82F6" stroke-width="1.4" stroke-opacity="0.55"/>
+  <line x1="100" y1="100" x2="108" y2="160" stroke="#7C3AED" stroke-width="1.4" stroke-opacity="0.55"/>
+  <line x1="100" y1="100" x2="42"  y2="138" stroke="#4F46E5" stroke-width="1.4" stroke-opacity="0.55"/>
+  <line x1="100" y1="100" x2="40"  y2="92"  stroke="#818CF8" stroke-width="1.2" stroke-opacity="0.4"/>
+  <line x1="100" y1="100" x2="140" y2="155" stroke="#60A5FA" stroke-width="1.2" stroke-opacity="0.4"/>
+
+  <!-- Cross-connections between satellites -->
+  <line x1="48"  y1="52"  x2="155" y2="60"  stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.28"/>
+  <line x1="155" y1="60"  x2="162" y2="118" stroke="#7C3AED" stroke-width="0.8" stroke-opacity="0.28"/>
+  <line x1="162" y1="118" x2="140" y2="155" stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.22"/>
+  <line x1="140" y1="155" x2="108" y2="160" stroke="#7C3AED" stroke-width="0.8" stroke-opacity="0.22"/>
+  <line x1="108" y1="160" x2="42"  y2="138" stroke="#4F46E5" stroke-width="0.8" stroke-opacity="0.28"/>
+  <line x1="42"  y1="138" x2="40"  y2="92"  stroke="#818CF8" stroke-width="0.8" stroke-opacity="0.28"/>
+  <line x1="40"  y1="92"  x2="48"  y2="52"  stroke="#3B82F6" stroke-width="0.8" stroke-opacity="0.22"/>
+
+  <!-- Core glow halo -->
+  <circle cx="100" cy="100" r="22" fill="#3B82F6" fill-opacity="0.12" filter="url(#softGlow)"/>
+
+  <!-- Satellite nodes (outer) -->
+  <circle cx="48"  cy="52"  r="10" fill="url(#nodeGradA)" filter="url(#glow)"/>
+  <circle cx="155" cy="60"  r="8"  fill="url(#nodeGradB)" filter="url(#glow)"/>
+  <circle cx="162" cy="118" r="9"  fill="url(#nodeGradA)" filter="url(#glow)"/>
+  <circle cx="108" cy="160" r="7"  fill="url(#nodeGradB)" filter="url(#glow)"/>
+  <circle cx="42"  cy="138" r="9"  fill="url(#nodeGradA)" filter="url(#glow)"/>
+  <circle cx="40"  cy="92"  r="6"  fill="url(#nodeGradB)" filter="url(#glow)"/>
+  <circle cx="140" cy="155" r="7"  fill="url(#nodeGradA)" filter="url(#glow)"/>
+
+  <!-- Satellite node inner highlights -->
+  <circle cx="46"  cy="50"  r="3.5" fill="white" fill-opacity="0.35"/>
+  <circle cx="153" cy="58"  r="2.8" fill="white" fill-opacity="0.35"/>
+  <circle cx="160" cy="116" r="3.2" fill="white" fill-opacity="0.35"/>
+  <circle cx="106" cy="158" r="2.4" fill="white" fill-opacity="0.35"/>
+  <circle cx="40"  cy="136" r="3.2" fill="white" fill-opacity="0.35"/>
+  <circle cx="38"  cy="90"  r="2.2" fill="white" fill-opacity="0.35"/>
+  <circle cx="138" cy="153" r="2.4" fill="white" fill-opacity="0.35"/>
+
+  <!-- Core node -->
+  <circle cx="100" cy="100" r="18" fill="url(#coreGrad)" filter="url(#glow)"/>
+  <!-- Core inner ring -->
+  <circle cx="100" cy="100" r="18" fill="none" stroke="white" stroke-width="1" stroke-opacity="0.3"/>
+  <!-- Core highlight -->
+  <circle cx="94"  cy="94"  r="6"  fill="white" fill-opacity="0.22"/>
+
+  <!-- Small accent dots suggesting data points -->
+  <circle cx="78"  cy="68"  r="2.5" fill="#60A5FA" fill-opacity="0.7"/>
+  <circle cx="130" cy="78"  r="2"   fill="#A78BFA" fill-opacity="0.7"/>
+  <circle cx="125" cy="135" r="2.5" fill="#60A5FA" fill-opacity="0.7"/>
+  <circle cx="68"  cy="122" r="2"   fill="#A78BFA" fill-opacity="0.7"/>
+</svg>

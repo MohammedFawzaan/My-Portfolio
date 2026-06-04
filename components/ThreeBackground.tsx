@@ -6,6 +6,8 @@ import * as THREE from "three";
 const PARTICLE_COUNT = 220;
 const CONNECTION_DISTANCE = 2.8;
 const BOUNDS = { x: 16, y: 10, z: 8 };
+const CYAN = new THREE.Color("#0891B2");
+const PURPLE = new THREE.Color("#7C3AED");
 
 function ParticleNetwork() {
   const pointsRef = useRef<THREE.Points>(null);
@@ -86,8 +88,6 @@ function ParticleNetwork() {
 
     // Build connections
     let lineIndex = 0;
-    const cyan = new THREE.Color("#0891B2");
-    const purple = new THREE.Color("#7C3AED");
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
       const i3 = i * 3;
@@ -101,7 +101,7 @@ function ParticleNetwork() {
         if (dist < CONNECTION_DISTANCE && lineIndex < maxLines) {
           // Fade line alpha based on distance
           const alpha = 1 - dist / CONNECTION_DISTANCE;
-          const midColor = cyan.clone().lerp(purple, alpha * 0.5);
+          const midColor = CYAN.clone().lerp(PURPLE, alpha * 0.5);
 
           const li = lineIndex * 6;
           linePositions[li] = posArr[i3];

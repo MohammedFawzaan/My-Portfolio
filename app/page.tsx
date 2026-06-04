@@ -1,4 +1,4 @@
-import { getPortfolioData } from "@/lib/contentParser";
+import data from "@/lib/portfolio.json";
 import NavBar from "@/components/NavBar";
 import ThreeBackground from "@/components/ThreeBackground";
 import Hero from "@/components/Hero";
@@ -14,7 +14,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  const data = getPortfolioData();
 
   const navLinks = [
     { name: "About", href: "#hero" },
@@ -36,10 +35,10 @@ export default function Home() {
         <Hero hero={data.hero} />
         <SectionDivider />
         <Skills skills={data.skills} />
-        <Experience experience={data.experience} />
-        <Projects projects={data.projects} />
-        <CodingProfiles profiles={data.codingProfiles} />
         <Education education={data.education} />
+        <Projects projects={data.projects} />
+        <Experience experience={data.experience} />
+        <CodingProfiles profiles={data.codingProfiles} />
         {/* <Certificates certificates={data.certificates} /> */}
         <ResumeSection />
         <Contact contact={data.contact} />

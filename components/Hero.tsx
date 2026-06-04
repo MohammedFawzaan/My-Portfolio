@@ -1,7 +1,6 @@
 "use client";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import ThreeBackground from "./ThreeBackground";
 
 interface HeroProps {
   hero: {

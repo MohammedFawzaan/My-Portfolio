@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
-import Image from "next/image";
 
 export default function ResumeSection() {
   const handleDownload = async () => {
@@ -41,13 +40,10 @@ export default function ResumeSection() {
           transition={{ duration: 0.5 }}
           className="relative w-full max-w-2xl aspect-[1/1.4] border border-border shadow-[0_0_30px_rgba(59,130,246,0.12)] mb-12 overflow-hidden rounded-xl bg-surface/50 backdrop-blur-sm"
         >
-          <Image
-            src="/resume.jpeg"
-            alt="Mohammed Fawzaan Resume Preview"
-            fill
-            unoptimized={true}
-            className="object-contain"
-            sizes="(max-width: 768px) 100vw, 800px"
+          <iframe
+            src="/Resume.pdf#toolbar=0&navpanes=0&scrollbar=0"
+            className="w-full h-full"
+            title="Mohammed Fawzaan Resume"
           />
         </motion.div>
 

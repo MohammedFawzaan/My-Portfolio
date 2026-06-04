@@ -1,4 +1,5 @@
 "use client";
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 const getIconUrl = (skillName: string) => {
@@ -14,7 +15,7 @@ const getIconUrl = (skillName: string) => {
     "Expo": "https://cdn.simpleicons.org/expo/1E293B",
     "Vite": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vite/vite-original.svg",
     "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
-    "Express.js": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg", // Using wordmark via simple icon logic below if it looks better, but express original usually works
+    "Express.js": "https://cdn.simpleicons.org/express/1E293B",
     "NestJS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg",
     "MySQL": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
     "MongoDB": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
@@ -23,19 +24,26 @@ const getIconUrl = (skillName: string) => {
     "Git": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
     "Prisma ORM": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg",
     "TypeORM": "https://cdn.simpleicons.org/typeorm/FE0803",
-    "HTML": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-    "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
-    "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
     "ShadCN UI": "https://cdn.simpleicons.org/shadcnui/1E293B",
+    "Tailwind CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+    "Redis": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg",
+    "Nginx": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nginx/nginx-original.svg",
   };
 
-  if (skillName === "Express.js") return "https://cdn.simpleicons.org/express/1E293B";
-
-  return map[skillName] || `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/devicon/devicon-original.svg`;
+  return map[skillName];
 };
 
 export default function Skills({ skills }: { skills: string[] }) {
   const filteredSkills = skills.filter((s) => s.trim().toUpperCase() !== "SQL");
+
+  const floatParams = useMemo(
+    () => filteredSkills.map(() => ({
+      duration: 3 + Math.random() * 2,
+      delay: Math.random() * 2,
+    })),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [filteredSkills.join(",")]
+  );
 
   return (
     <section id="skills" className="py-12 bg-transparent relative overflow-hidden">
@@ -72,9 +80,8 @@ export default function Skills({ skills }: { skills: string[] }) {
           }}
           className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16"
         >
-          {filteredSkills.map((skill) => {
-            const floatDuration = 3 + Math.random() * 2;
-            const floatDelay = Math.random() * 2;
+          {filteredSkills.map((skill, idx) => {
+            const { duration: floatDuration, delay: floatDelay } = floatParams[idx];
 
             return (
               <motion.div
