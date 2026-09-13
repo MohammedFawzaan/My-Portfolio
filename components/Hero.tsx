@@ -38,7 +38,7 @@ export default function Hero({ hero }: HeroProps) {
             className="text-[clamp(3.5rem,9.7vw,8.6rem)] font-semibold leading-[0.9] tracking-[-0.075em]"
           >
             <span className="block overflow-hidden pb-[0.08em]"><motion.span initial={reduceMotion ? false : { y: "110%" }} animate={{ y: 0 }} transition={{ duration: 0.9, ease }} className="block">Building</motion.span></span>
-            <span className="ml-[8vw] block overflow-hidden pb-[0.08em] sm:ml-20"><motion.span initial={reduceMotion ? false : { y: "110%" }} animate={{ y: 0 }} transition={{ duration: 0.9, delay: 0.08, ease }} className="editorial-serif block italic text-accent">Softwares</motion.span></span>
+            <span className="ml-[8vw] block overflow-hidden pb-[0.08em] sm:ml-20"><motion.span initial={reduceMotion ? false : { y: "110%" }} animate={{ y: 0 }} transition={{ duration: 0.9, delay: 0.08, ease }} className="editorial-serif block italic text-accent">Software</motion.span></span>
             <span className="block overflow-hidden pb-[0.08em]"><motion.span initial={reduceMotion ? false : { y: "110%" }} animate={{ y: 0 }} transition={{ duration: 0.9, delay: 0.16, ease }} className="block">that ships.</motion.span></span>
           </motion.h1>
 
