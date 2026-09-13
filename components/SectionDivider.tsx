@@ -1,46 +1,22 @@
 "use client";
-import { motion } from "framer-motion";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export default function SectionDivider() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const leftX = useTransform(scrollYProgress, [0, 1], ["-14%", "8%"]);
+  const rightX = useTransform(scrollYProgress, [0, 1], ["14%", "-8%"]);
+  const labelY = useTransform(scrollYProgress, [0, 0.5, 1], [8, 0, -8]);
+
   return (
-    <div className="relative w-full h-24 -mt-1 z-30 overflow-hidden">
-      {/* Animated glowing line */}
-      <motion.div
-        className="absolute top-1/2 left-0 w-full h-[1px] -translate-y-1/2"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent 0%, #3B82F6 25%, #7C3AED 50%, #3B82F6 75%, transparent 100%)",
-        }}
-        animate={{
-          backgroundPosition: ["0% 0%", "200% 0%"],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
-      {/* Glowing pulse behind the line */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-16 rounded-full"
-        style={{
-          background:
-            "radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 70%)",
-        }}
-        animate={{
-          opacity: [0.4, 0.8, 0.4],
-          scaleX: [0.8, 1.2, 0.8],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      {/* Top gradient bleed from hero */}
-      <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-background to-transparent" />
-      {/* Bottom gradient bleed into skills */}
-      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-background to-transparent" />
+    <div ref={ref} aria-hidden="true" className="section-shell flex items-center gap-5 overflow-hidden py-5 text-secondary-text/55">
+      <motion.span className="h-px flex-1 bg-border will-change-transform motion-reduce:!transform-none" style={{ x: leftX }} />
+      <motion.span className="font-mono text-[10px] uppercase tracking-[0.28em] will-change-transform motion-reduce:!transform-none" style={{ y: labelY }}>
+        Design · Develop · Deliver
+      </motion.span>
+      <motion.span className="h-px flex-1 bg-border will-change-transform motion-reduce:!transform-none" style={{ x: rightX }} />
     </div>
   );
 }

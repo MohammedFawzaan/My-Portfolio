@@ -8,8 +8,8 @@ const interFont = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Mohammed Fawzaan | Portfolio",
-  description: "Software Development Engineer Portfolio. Building scalable web & mobile products with modern technologies.",
+  title: "Mohammed Fawzaan — Software Engineer",
+  description: "Software engineer building thoughtful full-stack, mobile, and AI-powered products.",
   icons: {
     icon: "/logo.png",
   },
