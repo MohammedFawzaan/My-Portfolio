@@ -1,27 +1,28 @@
 {
   "hero": {
     "name": "Mohammed Fawzaan",
-    "title": "Software Development Engineer",
-    "tagline": "Building scalable web & mobile products with modern technologies.",
-    "summary": "Final-year B.Tech Computer Science student from Lords Institute of Technology with hands-on experience in full-stack development. Currently working as a Software Development Intern at Managix Technology, building real-world web and mobile applications. Skilled in modern technologies including React, Next.js, Node.js, and React Native, with a strong focus on scalable system design. Experienced in developing production-ready features, integrating APIs, and managing deployments. Passionate about building impactful products that solve real-world problems."
+    "title": "Software Engineer · Full-stack & AI Products",
+    "tagline": "I turn ambitious ideas into thoughtful digital products — from full-stack applications to intelligent systems.",
+    "summary": "I’m a Software Engineer building full-stack, mobile, and AI-powered products. My work spans product interfaces, backend systems, intelligent automation, and production deployments with a focus on software that feels as considered as it is capable."
   },
 
   "skills": [
-    "Java", "C", "Python", "JavaScript", "TypeScript",
+    "Java", "C/C++", "Python", "JavaScript", "TypeScript",
     "React.js", "Next.js", "React Native", "Expo", "Vite",
     "Node.js", "Express.js", "NestJS",
     "MySQL", "MongoDB", "PostgreSQL",
-    "Docker", "Git", "Redis", "Nginx",
+    "Docker", "Git", "Redis", "Nginx", "Electron", "LangChain", "LangGraph", "Gemini SDK",
+    "Claude SDK", "RAG", "QdrantDB",
     "Prisma ORM", "TypeORM", "Tailwind CSS", "ShadCN UI"
   ],
 
   "education": [
     {
       "degree": "B.Tech in Computer Science and Engineering",
-      "college": "Lords Institute of Technology",
+      "college": "Lords Institute of Engineering & Technology",
       "link": "https://www.lords.ac.in/",
       "duration": "2022 November - 2026 June",
-      "cgpa": "8.5"
+      "cgpa": "8.72"
     }
   ],
 
@@ -44,6 +45,23 @@
         "live": "https://ai-career-pilot-ecru.vercel.app/"
       },
       "logo": "/AICareerPilotLogo.png"
+    },
+    {
+      "title": "Friday — Desktop AI Agent",
+      "problem": "Transforms natural-language requests into real actions across a user’s desktop.",
+      "techStack": ["Electron", "React", "Vite", "Node.js", "LangChain", "Google Gemini 2.5 Flash", "nut.js", "Zod"],
+      "description": "Friday is a local AI desktop agent that goes beyond conversation. It interprets text or voice commands, chooses the right tools, and performs multi-step actions across files, applications, terminal workflows, and the desktop interface.",
+      "keyFeatures": [
+        "Natural-language desktop automation through an agentic tool-calling loop",
+        "Voice input, Gemini-powered transcription, and spoken responses",
+        "File, terminal, application, process, clipboard, mouse, and keyboard tools",
+        "Short-term conversational context for connected multi-step requests"
+      ],
+      "links": {
+        "github": "https://github.com/MohammedFawzaan/Desktop-AI-Agent",
+        "live": "coming-soon"
+      },
+      "logo": ""
     },
     {
       "title": "Ride Booking Web Application",
@@ -110,7 +128,7 @@
       ],
       "links": {
         "github": "https://github.com/MohammedFawzaan/RAG-pipeline",
-        "live": "coming-soon"
+        "live": "https://ragbot.fawzaan.in"
       },
       "logo": "/RAGPipelineLogo.svg"
     }
@@ -118,15 +136,28 @@
 
   "experience": [
     {
-      "role": "Software Development Intern",
-      "company": "Managix Technology",
+      "role": "Software Engineer",
+      "company": "Managix Technology Services LLP",
       "link": "https://managixglobal.com",
-      "duration": "Dec 2025 - Present",
+      "duration": "May 2026 - Present",
+      "current": true,
       "responsibilities": [
         "Building backend APIs using NestJS",
         "Working with databases like MySQL",
         "Managing VPS deployments on DigitalOcean",
         "Developing mobile applications using React Native and Expo"
+      ]
+    },
+    {
+      "role": "Software Development Intern",
+      "company": "Managix Technology Services LLP",
+      "link": "https://managixglobal.com",
+      "duration": "Dec 2025 - May 2026",
+      "responsibilities": [
+        "Supporting day-to-day feature development and implementation",
+        "Building responsive product interfaces with React.js",
+        "Assisting with API integrations, debugging, and testing",
+        "Collaborating with the team on code reviews and deployment workflows"
       ]
     }
   ],
@@ -145,7 +176,7 @@
     {
       "name": "GitHub",
       "link": "https://github.com/MohammedFawzaan",
-      "description": "30+ Repositories with 5 Real Projects"
+      "description": "30+ repositories with 6 featured products"
     }
   ],
 

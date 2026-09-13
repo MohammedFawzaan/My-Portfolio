@@ -1,174 +1,53 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ExternalLink } from "lucide-react";
-import Image from "next/image";
 
-interface ProfileItem {
-  name: string;
-  link: string;
-  description: string;
-}
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
-function DashboardImage({ src, alt }: { src: string; alt: string }) {
-  const [isLoading, setIsLoading] = useState(true);
+interface ProfileItem { name: string; link: string; description: string }
 
-  return (
-    <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-border shadow-[0_0_20px_rgba(59,130,246,0.1)]">
-      {/* Loading skeleton */}
-      {isLoading && (
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse flex items-center justify-center z-10">
-          <div className="flex flex-col items-center gap-3">
-            <div className="w-10 h-10 border-3 border-accent/30 border-t-accent rounded-full animate-spin" />
-            <span className="text-sm font-medium text-secondary-text">Loading dashboard...</span>
-          </div>
-        </div>
-      )}
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className={`object-contain transition-opacity duration-500 ${isLoading ? "opacity-0" : "opacity-100"}`}
-        onLoad={() => setIsLoading(false)}
-      />
-    </div>
-  );
-}
+const profileMeta: Record<string, { icon: string; color: string }> = {
+  LeetCode: { icon: "https://cdn.simpleicons.org/leetcode/14211D", color: "#f2e2d7" },
+  GitHub: { icon: "https://cdn.simpleicons.org/github/14211D", color: "#dfeee8" },
+  GeeksforGeeks: { icon: "https://cdn.simpleicons.org/geeksforgeeks/0F7668", color: "#e9ede7" },
+};
 
 export default function CodingProfiles({ profiles }: { profiles: ProfileItem[] }) {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
-  // Reorder to move GeeksforGeeks to last and apply requested text update
-  const processedProfiles = [...profiles]
-    .map(p => {
-      if (p.name.toLowerCase().includes('geeks') || p.name.toLowerCase().includes('gfg')) {
-        return { ...p, description: "Solved 100+ dsa problems" };
-      }
-      return p;
-    })
-    .sort((a, b) => {
-      const aGfg = a.name.toLowerCase().includes('geeks') || a.name.toLowerCase().includes('gfg');
-      const bGfg = b.name.toLowerCase().includes('geeks') || b.name.toLowerCase().includes('gfg');
-      if (aGfg && !bGfg) return 1;
-      if (!aGfg && bGfg) return -1;
-      return 0;
-    });
-
-  const toggle = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
-
-  const getImageSrc = (name: string) => {
-    const lowerName = name.toLowerCase();
-    if (lowerName.includes("leetcode")) return "/leetcode-dashboard.png";
-    if (lowerName.includes("github")) return "/github-dashboard.png";
-    // gfg dashboard removed per user request
-    return null;
-  };
-
-  const getIconSrc = (name: string) => {
-    const lowerName = name.toLowerCase();
-    if (lowerName.includes("leetcode")) return "https://cdn.simpleicons.org/leetcode/FFA116";
-    if (lowerName.includes("geek") || lowerName.includes("gfg")) return "https://cdn.simpleicons.org/geeksforgeeks/2F8D46";
-    if (lowerName.includes("github")) return "https://cdn.simpleicons.org/github/1E293B";
-    return null;
-  };
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section id="coding-profiles" className="py-12 bg-transparent relative">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
-        <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="text-sm font-bold tracking-[0.2em] text-accent uppercase mb-4 drop-shadow-md"
-          >
-            Showcase
-          </motion.h2>
-          <motion.h3
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, type: "spring" as const }}
-            className="text-4xl sm:text-6xl font-extrabold text-primary-text drop-shadow-lg"
-          >
-            Coding Profiles
-          </motion.h3>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          {processedProfiles.map((profile, index) => {
-            const isExpanded = expandedIndex === index;
-            const imgSrc = getImageSrc(profile.name);
-            const iconSrc = getIconSrc(profile.name);
-            const isGfg = profile.name.toLowerCase().includes('geeks') || profile.name.toLowerCase().includes('gfg');
-
+    <section id="coding-profiles" className="section-pad">
+      <div className="section-shell">
+        <SectionHeading eyebrow="Practice / 06" title="Proof of consistency." intro="Problem solving, public code, and the quiet repetition behind stronger engineering judgment." />
+        <div className="grid gap-4 lg:grid-cols-3">
+          {profiles.map((profile, index) => {
+            const meta = profileMeta[profile.name] ?? { icon: "", color: "#ffffff" };
             return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="glass overflow-hidden transition-all duration-300 hover:border-accent/80 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] shadow-lg"
+              <motion.article
+                key={profile.name}
+                initial={reduceMotion ? false : { opacity: 0, y: 34, rotate: index === 1 ? 0 : index === 0 ? -1.5 : 1.5 }}
+                whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                whileHover={reduceMotion ? undefined : { y: -6, rotate: index === 1 ? 0 : index === 0 ? -0.6 : 0.6 }}
+                viewport={{ once: true, margin: "-70px" }}
+                transition={{ duration: 0.58, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden rounded-[1.75rem] border border-border shadow-[var(--shadow-sm)]"
+                style={{ background: meta.color }}
               >
-                <div
-                  className={`px-4 sm:px-8 py-4 sm:py-6 flex items-center justify-between gap-4 ${!isGfg ? 'cursor-pointer' : ''}`}
-                  onClick={() => !isGfg && toggle(index)}
-                >
-                  <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
-                    {iconSrc && (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={iconSrc} alt={`${profile.name} logo`} className="w-6 h-6 sm:w-8 sm:h-8 object-contain drop-shadow-md" />
-                    )}
-                    <h4 className="text-lg sm:text-2xl font-bold text-primary-text drop-shadow-sm">
-                      {profile.name}
-                    </h4>
-                    <span className="text-secondary-text hidden sm:block font-bold mt-1">•</span>
-                    <p className="text-secondary-text font-semibold hidden sm:block mt-1">
-                      {profile.description}
-                    </p>
+                <div className="flex min-h-52 flex-col justify-between p-6 sm:p-7">
+                  <div className="flex items-start justify-between">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={meta.icon} alt="" className="h-9 w-9 object-contain" />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-secondary-text">0{index + 1}</span>
                   </div>
-                  <div className="flex items-center gap-2 sm:gap-4 text-accent shrink-0">
-                    <a
-                      href={profile.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 bg-background border border-border/50 hover:border-accent rounded-full transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                      title="Visit Profile"
-                    >
-                      <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </a>
-                    {!isGfg && (
-                      <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} className="p-1">
-                        <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
-                      </motion.div>
-                    )}
+                  <div className="mt-12">
+                    <h3 className="text-3xl font-semibold tracking-[-0.045em]">{profile.name}</h3>
+                    <p className="mt-2 text-sm leading-6 text-secondary-text">{profile.description}</p>
+                    <div className="mt-5 flex items-center gap-2">
+                      <a href={profile.link} target="_blank" rel="noreferrer" className="button-primary min-h-10 px-4 text-xs">Visit profile <ArrowUpRight size={14} /></a>
+                    </div>
                   </div>
                 </div>
-
-                {/* Mobile description visibility fallback */}
-                <p className="text-secondary-text font-medium px-4 sm:hidden pb-4 sm:pb-0 text-sm">
-                  {profile.description}
-                </p>
-
-                <AnimatePresence>
-                  {!isGfg && isExpanded && imgSrc && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden bg-section-alt border-t border-border"
-                    >
-                      <div className="p-6">
-                        <DashboardImage src={imgSrc} alt={`${profile.name} Dashboard`} />
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+              </motion.article>
             );
           })}
         </div>

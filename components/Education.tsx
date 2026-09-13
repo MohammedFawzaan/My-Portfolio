@@ -1,7 +1,9 @@
 "use client";
+
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { ArrowUpRight, CalendarDays, GraduationCap } from "lucide-react";
 import { useRef } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
-import { GraduationCap, ExternalLink } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
 interface EducationItem {
   degree: string;
@@ -12,95 +14,60 @@ interface EducationItem {
 }
 
 export default function Education({ education }: { education: EducationItem[] }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start center", "end center"]
-  });
-
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 20,
-    restDelta: 0.001
-  });
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 95, damping: 28, mass: 0.2 });
+  const watermarkX = useTransform(progress, [0, 1], ["-8%", "8%"]);
+  const college = education[0]?.college ?? "Lords Institute";
 
   return (
-    <section id="education" className="py-12 bg-transparent relative">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
-        <div className="mb-20">
-          <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="text-sm font-bold tracking-[0.2em] text-accent uppercase mb-4 drop-shadow-md"
-          >
-            Academic Journey
-          </motion.h2>
-          <motion.h3 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, type: "spring" }}
-            className="text-4xl sm:text-6xl font-extrabold text-primary-text drop-shadow-lg"
-          >
-            Education
-          </motion.h3>
-        </div>
+    <section ref={sectionRef} id="education" className="relative overflow-hidden border-y border-border bg-[#fffefa]/60 py-20 sm:py-24">
+      <motion.div
+        aria-hidden="true"
+        style={{ x: watermarkX }}
+        className="pointer-events-none absolute left-0 top-10 hidden select-none whitespace-nowrap text-[8vw] font-bold leading-none text-primary-text/[0.06] will-change-transform motion-reduce:hidden lg:block"
+      >
+        {college}
+      </motion.div>
+      <div className="section-shell relative">
+        <SectionHeading eyebrow="Education / 05" title="Built on fundamentals." size="compact" />
 
-        <div className="relative pl-7 sm:pl-8 md:pl-10 lg:pl-12" ref={ref}>
-          {/* Animated Timeline Line */}
-          <div className="absolute left-0 top-0 bottom-0 w-1 bg-border rounded-full" />
-          <motion.div 
-            className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-accent to-purple-500 rounded-full origin-top"
-            style={{ scaleY }}
-          />
-
-          {education.map((item, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
-              className="mb-12 sm:mb-16 relative last:mb-0 group"
+        <div className="space-y-4">
+          {education.map((item) => (
+            <motion.article
+              key={item.degree}
+              initial={{ opacity: 0.4, clipPath: "inset(0 18% 0 0 round 1.6rem)" }}
+              whileInView={{ opacity: 1, clipPath: "inset(0 0 0 0 round 1.6rem)" }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: reduceMotion ? 0 : 0.72, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={reduceMotion ? undefined : { y: -2 }}
+              className="grid overflow-hidden rounded-[1.6rem] border border-border bg-surface/90 shadow-[var(--shadow-sm)] transition-shadow duration-300 hover:shadow-[0_18px_46px_rgba(31,51,44,0.09)] lg:grid-cols-[1fr_auto] lg:items-stretch"
             >
-              <div className="absolute -left-12 sm:-left-13 md:-left-14 lg:-left-16 w-10 h-10 bg-background border-2 border-accent rounded-full flex items-center justify-center text-accent z-10 shadow-[0_0_15px_rgba(59,130,246,0.5)] group-hover:scale-125 transition-transform duration-300">
-                <GraduationCap size={20} />
-              </div>
-              
-              <div className="glass p-6 sm:p-8 rounded-2xl flex flex-col gap-3 group-hover:border-accent/50 transition-all duration-300 transform group-hover:-translate-y-2 group-hover:scale-[1.01] hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] relative overflow-hidden">
-                {/* Internal Glow */}
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl" />
-                
-                <span className="text-accent font-bold tracking-wider uppercase text-sm">
-                  {item.duration}
-                </span>
-                <h4 className="text-2xl sm:text-3xl font-extrabold text-primary-text drop-shadow-sm">
-                  {item.degree}
-                </h4>
-                <div className="flex items-center gap-3">
-                  <span className="text-indigo-600 font-bold text-lg sm:text-xl">
-                    {item.college}
-                  </span>
-                  {item.link && (
-                    <a 
-                      href={item.link} 
-                      target="_blank" 
-                      rel="noreferrer" 
-                      className="p-2 bg-background border border-border/50 hover:border-accent rounded-lg text-accent transition-all duration-300 hover:scale-110 shadow-sm"
-                      title="Visit Site"
-                    >
-                      <ExternalLink size={18} />
-                    </a>
-                  )}
+              <div className="flex gap-4 p-5 sm:gap-5 sm:p-7">
+                <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#e4f1ed] text-accent sm:h-14 sm:w-14">
+                  <GraduationCap size={25} strokeWidth={1.8} aria-hidden="true" />
                 </div>
-                {item.cgpa && (
-                  <p className="mt-4 text-primary-text bg-accent/10 border border-accent/20 inline-block px-5 py-2 rounded-full text-sm font-bold w-fit shadow-[inset_0_0_10px_rgba(59,130,246,0.1)]">
-                    CGPA: {item.cgpa}
-                  </p>
-                )}
+                <div>
+                  <span className="text-xs font-bold uppercase tracking-[0.13em] text-accent">Academic record</span>
+                  <h3 className="mt-2 text-xl font-semibold leading-tight text-primary-text sm:text-2xl">{item.degree}</h3>
+                  <a href={item.link} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-2 text-[0.95rem] font-medium text-secondary-text transition-colors hover:text-accent sm:text-base">
+                    {item.college}<ArrowUpRight size={15} aria-hidden="true" />
+                  </a>
+                </div>
               </div>
-            </motion.div>
+
+              <div className="grid grid-cols-2 border-t border-border bg-[#f1f2ed] lg:min-w-[25rem] lg:border-l lg:border-t-0">
+                <div className="flex flex-col justify-center px-5 py-4 sm:px-7">
+                  <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.11em] text-secondary-text"><CalendarDays size={14} aria-hidden="true" /> Timeline</span>
+                  <p className="mt-2 text-sm font-semibold leading-5 text-primary-text sm:text-base">{item.duration}</p>
+                </div>
+                <div className="flex flex-col justify-center border-l border-border px-5 py-4 sm:px-7">
+                  <span className="text-xs font-bold uppercase tracking-[0.11em] text-secondary-text">CGPA</span>
+                  <p className="mt-1 text-2xl font-semibold text-primary-text sm:text-3xl">{item.cgpa}<span className="ml-1 text-sm font-medium text-secondary-text">/ 10</span></p>
+                </div>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>

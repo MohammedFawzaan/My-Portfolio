@@ -8,7 +8,6 @@ import Education from "@/components/Education";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import CodingProfiles from "@/components/CodingProfiles";
-import Certificates from "@/components/Certificates";
 import ResumeSection from "@/components/ResumeSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -16,30 +15,24 @@ import Footer from "@/components/Footer";
 export default function Home() {
 
   const navLinks = [
-    { name: "About", href: "#hero" },
-    { name: "Skills", href: "#skills" },
-    { name: "Education", href: "#education" },
-    { name: "Projects", href: "#projects" },
+    { name: "Work", href: "#projects" },
+    { name: "Stack", href: "#skills" },
     { name: "Experience", href: "#experience" },
-    { name: "Profiles", href: "#coding-profiles" },
-    // { name: "Certificates", href: "#certificates" },
-    { name: "Resume", href: "#resume" },
-    { name: "Contact", href: "#contact" },
+    { name: "Education", href: "#education" },
   ];
 
   return (
     <>
       <ThreeBackground />
       <NavBar navLinks={navLinks} />
-      <main className="flex-1">
+      <main className="flex-1 relative">
         <Hero hero={data.hero} />
         <SectionDivider />
-        <Skills skills={data.skills} />
-        <Education education={data.education} />
         <Projects projects={data.projects} />
+        <Skills skills={data.skills} />
         <Experience experience={data.experience} />
+        <Education education={data.education} />
         <CodingProfiles profiles={data.codingProfiles} />
-        {/* <Certificates certificates={data.certificates} /> */}
         <ResumeSection />
         <Contact contact={data.contact} />
       </main>

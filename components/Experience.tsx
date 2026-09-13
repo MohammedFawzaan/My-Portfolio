@@ -1,119 +1,164 @@
 "use client";
+
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Building2, CalendarDays, Sparkles } from "lucide-react";
 import { useRef } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
-import { Briefcase, ExternalLink } from "lucide-react";
+import SectionHeading from "./SectionHeading";
 
 interface ExperienceItem {
   role: string;
   company: string;
   link: string;
   duration: string;
+  current?: boolean;
   responsibilities: string[];
 }
 
-export default function Experience({ experience }: { experience: ExperienceItem[] }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start center", "end center"]
-  });
-
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 20,
-    restDelta: 0.001
-  });
+function RoleMilestone({ item, index }: { item: ExperienceItem; index: number }) {
+  const ref = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 88%", "center 48%"] });
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 28, mass: 0.18 });
+  const opacity = useTransform(progress, [0, 0.3, 1], [0.32, 1, 1]);
+  const x = useTransform(progress, [0, 1], [36, 0]);
+  const titleY = useTransform(progress, [0, 1], [22, 0]);
 
   return (
-    <section id="experience" className="py-12 bg-transparent relative">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
-        <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="text-sm font-bold tracking-[0.2em] text-accent uppercase mb-4 drop-shadow-md"
-          >
-            Career
-          </motion.h2>
-          <motion.h3
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, type: "spring" }}
-            className="text-4xl sm:text-6xl font-extrabold text-primary-text drop-shadow-lg"
-          >
-            Experience
-          </motion.h3>
-        </div>
+    <motion.article
+      ref={ref}
+      style={{ opacity, x }}
+      className="relative pb-14 pl-12 will-change-transform motion-reduce:!transform-none motion-reduce:!opacity-100 sm:pb-20 sm:pl-20"
+    >
+      <span className={`absolute left-[0.7rem] top-1 z-10 grid h-7 w-7 place-items-center rounded-full border bg-background sm:left-[1.65rem] ${item.current ? "border-accent" : "border-[#89948e]"}`}>
+        <span className={`h-2 w-2 rounded-full ${item.current ? "bg-accent" : "bg-[#89948e]"}`} />
+        {item.current && !reduceMotion && <span className="absolute inset-0 animate-ping rounded-full border border-accent/35" />}
+      </span>
 
-        <div className="relative pl-7 sm:pl-8 md:pl-10 lg:pl-12" ref={ref}>
-          {/* Animated Timeline Line */}
-          <div className="absolute left-0 top-0 bottom-0 w-1 bg-border rounded-full" />
-          <motion.div
-            className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-500 to-accent rounded-full origin-top"
-            style={{ scaleY }}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        <span className="font-mono text-xs font-bold uppercase tracking-[0.14em] text-accent">Milestone 0{index + 1}</span>
+        <span className="h-px w-10 bg-border" />
+        <span className="inline-flex items-center gap-2 text-sm font-semibold text-secondary-text">
+          <CalendarDays size={15} aria-hidden="true" /> {item.duration}
+        </span>
+      </div>
+
+      <motion.div style={{ y: titleY }} className="mt-5 will-change-transform motion-reduce:!transform-none">
+        <div className="flex flex-wrap items-center gap-3">
+          <h3 className={`font-semibold leading-[0.98] text-primary-text ${item.current ? "text-[clamp(2.7rem,6vw,5.3rem)]" : "text-[clamp(2.25rem,5vw,4.3rem)]"}`}>
+            {item.role}
+          </h3>
+          <span className={`rounded-full px-3 py-1.5 text-xs font-bold ${item.current ? "bg-[#dff0ea] text-accent" : "bg-[#eceee9] text-secondary-text"}`}>
+            {item.current ? "Current role" : "Starting point"}
+          </span>
+        </div>
+      </motion.div>
+
+      <motion.ul
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        variants={{ visible: { transition: { staggerChildren: reduceMotion ? 0 : 0.09 } } }}
+        className="mt-8 max-w-3xl"
+      >
+        {item.responsibilities.map((responsibility, responsibilityIndex) => (
+          <motion.li
+            key={responsibility}
+            variants={{
+              hidden: { opacity: 0, x: 20 },
+              visible: { opacity: 1, x: 0 },
+            }}
+            transition={{ duration: reduceMotion ? 0 : 0.48, ease: [0.22, 1, 0.36, 1] }}
+            className="group flex gap-4 border-t border-border py-4 sm:gap-6 sm:py-5"
+          >
+            <span className="pt-0.5 font-mono text-xs font-bold text-accent/75">{String(responsibilityIndex + 1).padStart(2, "0")}</span>
+            <p className="text-base font-medium leading-7 text-[#34423c] transition-transform duration-300 group-hover:translate-x-1 sm:text-[1.05rem]">{responsibility}</p>
+          </motion.li>
+        ))}
+      </motion.ul>
+    </motion.article>
+  );
+}
+
+export default function Experience({ experience }: { experience: ExperienceItem[] }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = useReducedMotion();
+  const roles = experience;
+  const company = roles[0];
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start 72%", "end 32%"] });
+  const timelineProgress = useSpring(scrollYProgress, { stiffness: 95, damping: 28, mass: 0.2 });
+  const watermarkX = useTransform(timelineProgress, [0, 1], ["8%", "-10%"]);
+  const promotionOpacity = useTransform(timelineProgress, [0.2, 0.36, 1], [0, 1, 1]);
+  const promotionScale = useTransform(timelineProgress, [0.2, 0.38, 1], [0.88, 1, 1]);
+
+  if (!company) return null;
+
+  return (
+    <section ref={sectionRef} id="experience" className="section-pad relative overflow-hidden">
+      <motion.div
+        aria-hidden="true"
+        style={{ x: watermarkX }}
+        className="pointer-events-none absolute right-0 top-28 hidden select-none whitespace-nowrap text-[10vw] font-bold leading-none text-primary-text/[0.075] will-change-transform motion-reduce:hidden lg:block"
+      >
+        Managix Technology
+      </motion.div>
+
+      <div className="section-shell relative grid gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
+        <aside className="lg:sticky lg:top-28 lg:self-start">
+          <SectionHeading
+            eyebrow="Experience / 04"
+            title="Learning by shipping."
+            intro="A growing engineering career shaped by ownership across backend systems, mobile products, and production infrastructure."
           />
 
-          {experience.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
-              className="mb-12 sm:mb-16 relative last:mb-0 group"
-            >
-              <div className="absolute -left-12 sm:-left-13 md:-left-14 lg:-left-16 w-10 h-10 bg-section-alt border-2 border-purple-500 rounded-full flex items-center justify-center text-purple-400 z-10 shadow-[0_0_15px_rgba(168,85,247,0.5)] group-hover:scale-125 transition-transform duration-300">
-                <Briefcase size={20} />
-              </div>
+          <div className="border-t border-border pt-6">
+            <span className="text-xs font-bold uppercase tracking-[0.14em] text-accent">Company</span>
+            <p className="mt-2 text-xl font-semibold text-primary-text">{company.company}</p>
+            {company.link && (
+              <motion.a
+                href={company.link}
+                target="_blank"
+                rel="noreferrer"
+                whileHover={reduceMotion ? undefined : { x: 4 }}
+                className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-secondary-text transition-colors hover:text-accent"
+              >
+                Visit company <ArrowUpRight size={15} aria-hidden="true" />
+              </motion.a>
+            )}
+          </div>
+        </aside>
 
-              <div className="glass p-6 sm:p-8 rounded-2xl flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16 group-hover:border-purple-500/50 transition-all duration-300 transform group-hover:-translate-y-2 group-hover:scale-[1.01] hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] relative overflow-hidden">
-                <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
-                <div className="lg:w-1/3 relative z-10">
-                  {item.duration && (
-                    <span className="text-purple-400 font-bold tracking-wider uppercase text-sm block mb-2">
-                      {item.duration}
-                    </span>
-                  )}
-                  <h4 className="text-2xl sm:text-3xl font-extrabold text-primary-text drop-shadow-sm">{item.role}</h4>
-                  <div className="flex items-center gap-3 mt-2">
-                    <p className="text-purple-400 font-bold text-lg drop-shadow-sm">
-                      {item.company}
-                    </p>
-                    {item.link && (
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="p-2 bg-background border border-border/50 hover:border-purple-400 rounded-lg text-purple-400 transition-all duration-300 hover:scale-110 shadow-sm"
-                        title="Visit Site"
-                      >
-                        <ExternalLink size={18} />
-                      </a>
-                    )}
+        <div className="relative pt-2">
+          <div className="absolute bottom-16 left-6 top-4 w-px bg-border sm:left-10" />
+          <motion.div
+            className="absolute bottom-16 left-6 top-4 w-[2px] origin-top bg-gradient-to-b from-[#89948e] via-accent to-signal sm:left-10"
+            style={{ scaleY: timelineProgress }}
+          />
+
+          {roles.map((item, index) => (
+            <div key={item.role}>
+              <RoleMilestone item={item} index={index} />
+              {index < roles.length - 1 && (
+                <motion.div
+                  style={{ opacity: promotionOpacity, scale: promotionScale }}
+                  className="relative mb-14 ml-1 flex origin-left items-center gap-4 pl-12 will-change-transform motion-reduce:!transform-none motion-reduce:!opacity-100 sm:mb-20 sm:ml-4 sm:pl-20"
+                >
+                  <span className="absolute left-0 grid h-12 w-12 place-items-center rounded-full border border-accent/25 bg-[#e4f1ed] text-accent shadow-[0_10px_28px_rgba(15,118,104,0.12)]">
+                    <ArrowDown size={19} aria-hidden="true" />
+                  </span>
+                  <div className="h-px w-8 bg-accent/35" />
+                  <div>
+                    <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-signal"><Sparkles size={14} /> Career progression</span>
+                    <p className="mt-1 text-sm font-semibold text-primary-text">Promoted from Software Development Intern into Software Engineer</p>
                   </div>
-                </div>
-
-                <div className="lg:w-2/3 relative z-10">
-                  <ul className="space-y-4">
-                    {item.responsibilities.map((resp, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1 + 0.3 }}
-                        className="text-primary-text font-medium leading-relaxed pl-6 relative before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-2 before:h-2 before:rounded-sm before:bg-purple-500 before:shadow-[0_0_8px_rgba(168,85,247,0.8)]"
-                      >
-                        {resp}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </motion.div>
+                </motion.div>
+              )}
+            </div>
           ))}
+
+          <div className="ml-12 flex items-center gap-3 border-t border-border pt-6 sm:ml-20">
+            <Building2 size={18} className="text-accent" aria-hidden="true" />
+            <span className="text-sm font-semibold text-secondary-text">Continuing the journey at {company.company}</span>
+          </div>
         </div>
       </div>
     </section>
